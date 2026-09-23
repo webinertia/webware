@@ -25,6 +25,10 @@ config:
 | `phpunit.xml.dist` | PHPUnit 13 strict mode: `requireCoverageMetadata`, `failOnNotice`, `failOnWarning`, `failOnDeprecation`. |
 | `compose.yml` / `Dockerfile` / `.devcontainer/` | The containerized toolchain (Composer, PHPUnit, Mago, Infection, PHPBench, roave BC-check). |
 | `src/App/src/ConfigProvider.php` | The application's wiring entry point, declared under `extra.laminas.config-provider`. |
+| `config/` | The Mezzio config: the aggregator (`config.php`), the container (`container.php`), the middleware pipeline (`pipeline.php`), and the layered `autoload/` files. |
+| `public/index.php` | The front controller — `public/` is the document root. |
+| `bin/clear-config-cache.php` | Drops the aggregated config cache; wired as `composer clear-config-cache`. |
+| `data/cache/` | The config cache target, held in git by `.gitkeep` only. |
 
 `mago.toml`, `phpunit.xml.dist`, `.gitattributes`, `codecov.yml`, `Dockerfile`,
 `.dockerignore`, `infection.json5.dist`, `phpbench.json.dist` and devcontainer config are
@@ -59,6 +63,15 @@ docker compose exec tooling composer test-integration
 docker compose exec tooling mago lint
 docker compose down
 ```
+
+To boot the application itself:
+
+```shell
+composer serve   # php -S 0.0.0.0:8080 -t public/
+```
+
+No routes are registered yet, so every request answers `404` from Mezzio's default handler —
+that is the expected state until the components are wired in and a route provider exists.
 
 Packages whose tests need MySQL uncomment the `mysql` service in `compose.yml`, mirroring the
 `db_image` / `db_env_json` / `db_port` values they declare in `webware-ci.json`.

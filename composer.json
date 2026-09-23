@@ -22,6 +22,13 @@
     },
     "require": {
         "php": "~8.4.1 || ~8.5.0",
+        "laminas/laminas-config-aggregator": "^1.19",
+        "laminas/laminas-diactoros": "^3.8",
+        "laminas/laminas-servicemanager": "^4.5",
+        "laminas/laminas-stdlib": "^3.21",
+        "mezzio/mezzio": "^3.26",
+        "mezzio/mezzio-fastroute": "^3.14",
+        "mezzio/mezzio-helpers": "^5.20",
         "psr/container": "^2.0"
     },
     "require-dev": {
@@ -59,6 +66,11 @@
         ]
     },
     "scripts": {
+        "clear-config-cache": "php bin/clear-config-cache.php",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ],
         "test": "phpunit --no-coverage --colors=always --testsuite \"unit test\"",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml --coverage-text",
         "test-integration": "phpunit --no-coverage --colors=always --testsuite \"integration test\"",
