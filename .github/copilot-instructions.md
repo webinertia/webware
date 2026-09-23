@@ -1,4 +1,4 @@
-# webware/skeleton — Copilot Agent Instructions
+# webware/webware — Copilot Agent Instructions
 
 ## Mago Analyzer Docblock Types
 

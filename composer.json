@@ -1,11 +1,12 @@
 {
-    "name": "webware/skeleton",
-    "description": "Greenfield starter for Webware packages: shared tooling config, the organization's required CI workflow contract, and a containerized dev environment.",
+    "name": "webware/webware",
+    "description": "The Webware application skeleton: a Mezzio application that binds the Webware components together.",
     "license": "BSD-3-Clause",
     "keywords": [
         "webware",
         "mezzio",
-        "skeleton"
+        "skeleton",
+        "application"
     ],
     "authors": [
         {
@@ -16,7 +17,7 @@
     ],
     "extra": {
         "laminas": {
-            "config-provider": "Webware\\Skeleton\\ConfigProvider"
+            "config-provider": "App\\ConfigProvider"
         }
     },
     "require": {
@@ -33,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Webware\\Skeleton\\": "src/"
+            "App\\": "src/App/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WebwareTest\\Skeleton\\": "test/unit/",
-            "WebwareTestIntegration\\Skeleton\\": "test/integration/"
+            "AppTest\\": "test/unit/",
+            "AppTestIntegration\\": "test/integration/"
         }
     },
     "minimum-stability": "dev",
