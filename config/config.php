@@ -25,6 +25,16 @@ $cacheConfig = [
 
 $aggregator = new ConfigAggregator(
     [
+        \Laminas\InputFilter\ConfigProvider::class,
+        \Laminas\Filter\ConfigProvider::class,
+        \Laminas\Validator\ConfigProvider::class,
+        \Mezzio\Authentication\ConfigProvider::class,
+        \Phly\EventDispatcher\ConfigProvider::class,
+        \Mezzio\Session\Ext\ConfigProvider::class,
+        \Mezzio\Session\ConfigProvider::class,
+        \Mezzio\LaminasView\ConfigProvider::class,
+        \Laminas\View\ConfigProvider::class,
+        \Laminas\Hydrator\ConfigProvider::class,
         Laminas\ServiceManager\ConfigProvider::class,
         Mezzio\Router\FastRouteRouter\ConfigProvider::class,
         Mezzio\Helper\ConfigProvider::class,
@@ -32,6 +42,17 @@ $aggregator = new ConfigAggregator(
         Mezzio\ConfigProvider::class,
         Laminas\Diactoros\ConfigProvider::class,
         Laminas\HttpHandlerRunner\ConfigProvider::class,
+        \PhpDb\ConfigProvider::class,
+        \PhpDb\Mysql\ConfigProvider::class,
+        \Webware\Core\ConfigProvider::class,
+        \Webware\Console\ConfigProvider::class,
+        \Webware\Acl\ConfigProvider::class,
+        \Webware\Htmx\ConfigProvider::class,
+        \Webware\Log\ConfigProvider::class,
+        \Webware\Mailer\ConfigProvider::class,
+        \Webware\Message\ConfigProvider::class,
+        \Webware\MessageBus\ConfigProvider::class,
+        \Webware\UserManager\ConfigProvider::class,
         // Include cache configuration
         new ArrayProvider($cacheConfig),
         // Default App module config

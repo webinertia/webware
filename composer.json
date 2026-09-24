@@ -20,6 +20,41 @@
             "config-provider": "App\\ConfigProvider"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../webware-*",
+            "options": {
+                "symlink": true,
+                "reference": "none",
+                "versions": {
+                    "webware/webware-core": "1.0.0-alpha.6",
+                    "webware/webware-event": "1.0.0-alpha.2",
+                    "webware/webware-log": "2.0.0-alpha.1",
+                    "webware/webware-message": "1.0.0-beta.3",
+                    "webware/webware-mailer": "1.0.0-beta.5",
+                    "webware/webware-admin": "1.0.x-dev",
+                    "webware/webware-htmx": "1.0.x-dev",
+                    "webware/webware-console": "1.0.x-dev",
+                    "webware/webware-navigation": "1.0.x-dev",
+                    "webware/webware-acl": "1.0.0",
+                    "webware/webware-usermanager": "1.0.0",
+                    "webware/webware-tools": "1.0.0-beta.3"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../message-bus",
+            "options": {
+                "symlink": true,
+                "reference": "none",
+                "versions": {
+                    "webware/message-bus": "2.0.0-beta.3"
+                }
+            }
+        }
+    ],
     "require": {
         "php": "~8.4.1 || ~8.5.0",
         "laminas/laminas-config-aggregator": "^1.19",
@@ -29,7 +64,19 @@
         "mezzio/mezzio": "^3.26",
         "mezzio/mezzio-fastroute": "^3.14",
         "mezzio/mezzio-helpers": "^5.20",
-        "psr/container": "^2.0"
+        "psr/container": "^2.0",
+        "webware/message-bus": "^2.0.0-beta.3",
+        "webware/webware-acl": "^1.0",
+        "webware/webware-admin": "1.0.x-dev",
+        "webware/webware-console": "1.0.x-dev",
+        "webware/webware-core": "^1.0.0-alpha.6",
+        "webware/webware-event": "^1.0.0-alpha.2",
+        "webware/webware-htmx": "1.0.x-dev",
+        "webware/webware-log": "^2.0.0-alpha.1",
+        "webware/webware-mailer": "^1.0.0-beta.5",
+        "webware/webware-message": "^1.0.0-beta.3",
+        "webware/webware-navigation": "1.0.x-dev",
+        "webware/webware-usermanager": "^1.0"
     },
     "require-dev": {
         "infection/infection": "^0.35.0",

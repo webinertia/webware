@@ -24,6 +24,28 @@ namespace App;
  */
 final class ConfigProvider
 {
+    /**
+     * Returns the templates configuration
+     *
+     * @return array<string, mixed>
+     */
+    public function getTemplates(): array
+    {
+        return [
+            'map'            => [
+                'layout::default' => __DIR__ . '/../templates/layout/default.phtml',
+                'app::home-page'  => __DIR__ . '/../templates/app/home-page.phtml',
+                'error::404'      => __DIR__ . '/../templates/error/404.phtml',
+                'error::error'    => __DIR__ . '/../templates/error/error.phtml',
+            ],
+            'paths'          => [
+                'app'   => [__DIR__ . '/../templates/app'],
+                'error' => [__DIR__ . '/../templates/error'],
+            ],
+            'default_layout' => 'layout::default',
+        ];
+    }
+
     /** @return array<string, mixed> */
     private function getDependencies(): array
     {
@@ -37,6 +59,7 @@ final class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencies(),
+            'templates'    => $this->getTemplates(),
         ];
     }
 }

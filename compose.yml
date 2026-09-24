@@ -1,10 +1,14 @@
 # ---------------------------------------------------------------------------
-# Webware alignment local development environment
+# Webware application development environment
 #
-# A persistent, interactive development environment that runs the full Webware
-# toolchain (Composer, PHPUnit, Mago, Infection, PHPBench, roave BC-check)
-# inside a container, so the host never needs a native PHP install. Works
-# identically on Windows, WSL, Linux, and macOS.
+# Two things live here:
+#
+#   1. The backing services the application talks to — MySQL, phpMyAdmin and
+#      Mailpit — each published to the host, because the application's PHP runs
+#      on the host and connects to them over 127.0.0.1.
+#   2. The `tooling` container, which runs the full Webware toolchain (Composer,
+#      PHPUnit, Mago, Infection, PHPBench, roave BC-check) for anyone who wants
+#      the toolchain containerised rather than native.
 #
 # This compose file is the single source of truth for the environment. Two
 # ways to use it:
@@ -21,13 +25,12 @@
 #        docker compose exec tooling mago lint
 #        docker compose down                  # stop it
 #
-# Packages whose tests need MySQL uncomment the `mysql` service below (and the
-# `phpmyadmin` web UI if wanted), plus the `depends_on` block on `tooling`. The
-# `mysql` service mirrors the `db_image` package parameter used by CI, and is
-# reachable from `tooling` as host `mysql` on port 3306 — matching the PhpDb
-# `mysql.local.php` connection convention. Packages that need a different
-# engine add an equivalent service here (postgres, mariadb, ...) mirroring
-# their own `db-image` parameter.
+# Services are addressed from the host on 127.0.0.1: MySQL 3306, Mailpit SMTP
+# 1025 / UI 8025, phpMyAdmin 8082. That is why config/autoload/mysql.local.php
+# uses host 127.0.0.1 rather than the compose service name, and why phpMyAdmin
+# does not take 8080 — that port belongs to the application (`composer serve`).
+# The service values mirror the `db_image` / `db_env_json` / `db_port` package
+# parameters used by CI.
 # ---------------------------------------------------------------------------
 
 services:
@@ -64,61 +67,69 @@ services:
       # Windows) so downloads survive container rebuilds. It is only a cache
       # — the developer's real artifacts all live on the host.
       - composer-cache:/tmp/composer-cache
-    # Uncomment when the package's tests need MySQL (see the `mysql` service
-    # below). Ensures the database is ready before the shell attaches.
-    # depends_on:
-    #   mysql:
-    #     condition: service_healthy
+    # MySQL must be healthy before the shell attaches (see the `mysql` service
+    # below).
+    depends_on:
+      mysql:
+        condition: service_healthy
     working_dir: /app
 
   # -------------------------------------------------------------------------
-  # MySQL (optional) — uncomment this whole block for packages whose tests
-  # need a MySQL database (e.g. webware-acl via php-db/phpdb-mysql).
-  #
-  # Mirror the spec's `db_image` / `db_env_json` / `db_port` Package Parameters
-  # so the dev database matches CI. Point the package's local DB config (e.g.
-  # config/autoload/mysql.local.php) at host `mysql`, port 3306, using the
-  # credentials below. Adjust MYSQL_DATABASE / MYSQL_USER / MYSQL_PASSWORD to
-  # the package's test-database convention. MYSQL_ALLOW_EMPTY_PASSWORD keeps
-  # the test-only database free of a root password and in sync with the CI
-  # `db_env_json` — remove it if the package pins a root password instead.
+  # MySQL — mirrors the CI `db_image` / `db_env_json` / `db_port` parameters so
+  # the dev database matches CI. Reachable from `tooling` as host `mysql` on
+  # port 3306, which is where config/autoload/mysql.local.php points.
   # -------------------------------------------------------------------------
-  # mysql:
-  #   image: mysql:9.7
-  #   environment:
-  #     MYSQL_ROOT_HOST: "%"
-  #     MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-  #     MYSQL_DATABASE: webware
-  #     MYSQL_USER: webware
-  #     MYSQL_PASSWORD: webware
-  #   healthcheck:
-  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-  #     interval: 5s
-  #     timeout: 5s
-  #     retries: 30
-  #   volumes:
-  #     # Named volume keeps the data on the fast Linux filesystem and
-  #     # survives `docker compose down` (use `down -v` to wipe it).
-  #     - mysql-data:/var/lib/mysql
-  #
-  # # phpMyAdmin — optional web UI for the `mysql` service above. Reachable at
-  # # http://localhost:8080 (log in as root with an empty password, or with
-  # # the MYSQL_USER / MYSQL_PASSWORD credentials). Uncomment alongside
-  # # `mysql`.
-  # phpmyadmin:
-  #   image: phpmyadmin:latest
-  #   environment:
-  #     PMA_HOST: mysql
-  #     PMA_PORT: 3306
-  #     PMA_USER: root
-  #     PMA_PASSWORD: ""
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     mysql:
-  #       condition: service_healthy
+  mysql:
+    image: mysql:9.7
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: webware
+      MYSQL_USER: webware
+      MYSQL_PASSWORD: webware
+    ports:
+      # Published so the database resolves from the host (127.0.0.1:3306);
+      # inside the compose network it is also reachable as host `mysql`.
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    volumes:
+      # Named volume keeps the data on the fast Linux filesystem and
+      # survives `docker compose down` (use `down -v` to wipe it).
+      - mysql-data:/var/lib/mysql
+  # -------------------------------------------------------------------------
+  # phpMyAdmin — web UI for the `mysql` service above, published on 8082 so the
+  # application keeps 8080 for itself (`composer serve`). Reachable at
+  # http://localhost:8082 (log in as root with an empty password, or with the
+  # MYSQL_USER / MYSQL_PASSWORD credentials).
+  # -------------------------------------------------------------------------
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ""
+    ports:
+      - "8082:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # -------------------------------------------------------------------------
+  # Mailpit — catches outgoing mail for webware-mailer. Reachable from
+  # `tooling` as host `mailpit` on port 1025; the web UI is at
+  # http://localhost:8025.
+  # -------------------------------------------------------------------------
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"
+      - "1025:1025"
 
 volumes:
   composer-cache:
-  # Used by the optional `mysql` service above.
   mysql-data:
