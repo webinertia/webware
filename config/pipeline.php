@@ -23,15 +23,40 @@ use Mezzio\Router\Middleware\ImplicitHeadMiddleware;
 use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
+use Mezzio\Session\SessionMiddleware;
 use Psr\Container\ContainerInterface;
+use Webware\Acl\Http\Middleware\AclMiddleware;
+use Webware\Acl\Http\Middleware\AuthorizationMiddleware;
+use Webware\Core\Http\Middleware\AttachCoreServicesMiddleware;
+use Webware\Event\Http\Middleware\EventDispatcherMiddleware;
+use Webware\Htmx\Http\Middleware\DetectAjaxRequestMiddleware;
+use Webware\Log\Http\Middleware\MonologMiddleware;
+use Webware\Navigation\Http\Middleware\NavigationMiddleware;
+use Webware\Traccio\Middleware\TracyDebuggerMiddleware;
+use Webware\UserManager\Http\Middleware\IdentityMiddleware;
 
 // Setup middleware pipeline:
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     // The error handler should be the first (most outer) middleware to catch
-    // all Exceptions.
-    $app->pipe(ErrorHandler::class);
+    // all Exceptions. Traccio takes its place while debugging so its panels see
+    // the request; it is only piped when the optional package is installed.
+    class_exists(TracyDebuggerMiddleware::class) && $container->get('config')['debug']
+        ? $app->pipe(TracyDebuggerMiddleware::class)
+        : $app->pipe(ErrorHandler::class);
+
+    $app->pipe(EventDispatcherMiddleware::class);
     $app->pipe(ServerUrlMiddleware::class);
+    $app->pipe(SessionMiddleware::class);
+
+    // Resolves the identity from the session and attaches a UserInterface to
+    // every request. Must run after SessionMiddleware. It never denies access —
+    // that is AuthorizationMiddleware's job.
+    $app->pipe(IdentityMiddleware::class);
+
+    $app->pipe(AttachCoreServicesMiddleware::class);
+    $app->pipe(MonologMiddleware::class);
+    $app->pipe(DetectAjaxRequestMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
@@ -74,6 +99,15 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // - route-based authentication
     // - route-based validation
     // - etc.
+    //
+    // Injects the resolved roles and the active route name into the Navigation
+    // view helper. Reads RouteResult, so it must follow RouteMiddleware.
+    $app->pipe(NavigationMiddleware::class);
+
+    // ACL route access check — must run after routing and identity are resolved,
+    // before dispatch.
+    $app->pipe(AclMiddleware::class);
+    $app->pipe(AuthorizationMiddleware::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

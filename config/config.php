@@ -44,14 +44,21 @@ $aggregator = new ConfigAggregator(
         Laminas\HttpHandlerRunner\ConfigProvider::class,
         \PhpDb\ConfigProvider::class,
         \PhpDb\Mysql\ConfigProvider::class,
+        // Development-only: merged only when the traccio package is installed.
+        class_exists(\Webware\Traccio\ConfigProvider::class)
+            ? \Webware\Traccio\ConfigProvider::class
+            : static fn(): array => [],
         \Webware\Core\ConfigProvider::class,
+        \Webware\Event\ConfigProvider::class,
         \Webware\Console\ConfigProvider::class,
         \Webware\Acl\ConfigProvider::class,
+        \Webware\Admin\ConfigProvider::class,
         \Webware\Htmx\ConfigProvider::class,
         \Webware\Log\ConfigProvider::class,
         \Webware\Mailer\ConfigProvider::class,
         \Webware\Message\ConfigProvider::class,
         \Webware\MessageBus\ConfigProvider::class,
+        \Webware\Navigation\ConfigProvider::class,
         \Webware\UserManager\ConfigProvider::class,
         // Include cache configuration
         new ArrayProvider($cacheConfig),

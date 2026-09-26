@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d2a5a0c96c0270433e0aaf02687aafa",
+    "content-hash": "6f096848bd70f132e265ec173de87d73",
     "packages": [
         {
             "name": "brick/math",
@@ -6278,6 +6278,89 @@
                 "issues": "https://github.com/webinertia/webware-message/issues",
                 "chat": "https://discord.gg/9TxQ74EPsG"
             },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "webware/webware-navigation",
+            "version": "1.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "../webware-navigation"
+            },
+            "require": {
+                "laminas/laminas-view": "^3.0",
+                "mezzio/mezzio-router": "^3.15 || ^4.0",
+                "php": "~8.4.1 || ~8.5.0",
+                "psr/container": "^2.0",
+                "psr/http-message": "^2.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0",
+                "webware/webware-core": "^1.0.0-alpha.6"
+            },
+            "require-dev": {
+                "infection/infection": "^0.34.1",
+                "laminas/laminas-permissions-acl": "^2.16",
+                "phpbench/phpbench": "^1.7",
+                "phpunit/phpunit": "^13.3.0",
+                "roave/backward-compatibility-check": "^8.21.0",
+                "roave/security-advisories": "dev-master",
+                "webware/webware-tools": "^1.0.0-beta.2"
+            },
+            "type": "library",
+            "extra": {
+                "laminas": {
+                    "config-provider": "Webware\\Navigation\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webware\\Navigation\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "WebwareTest\\Navigation\\": "test/unit/",
+                    "WebwareTestIntegration\\Navigation\\": "test/integration/"
+                }
+            },
+            "scripts": {
+                "test-all": [
+                    "@test",
+                    "@test-integration"
+                ],
+                "test": [
+                    "phpunit --no-coverage --colors=always --testsuite \"unit test\""
+                ],
+                "test-coverage": [
+                    "phpunit --colors=always --coverage-clover clover.xml --coverage-html coverage/html --coverage-text"
+                ],
+                "test-integration": [
+                    "phpunit --no-coverage --colors=always --testsuite \"integration test\""
+                ],
+                "mutation-test": [
+                    "infection"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Joey Smith",
+                    "email": "jsmith@webinertia.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ACL-aware navigation middleware, container, and Laminas view helper for webware-* packages",
+            "keywords": [
+                "acl",
+                "mezzio",
+                "navigation",
+                "webware"
+            ],
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -13428,6 +13511,86 @@
             "time": "2025-12-08T11:19:18+00:00"
         },
         {
+            "name": "tracy/tracy",
+            "version": "v2.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/tracy.git",
+                "reference": "90d24872cd97202f79281aac7eb09c27ec48bf69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/90d24872cd97202f79281aac7eb09c27ec48bf69",
+                "reference": "90d24872cd97202f79281aac7eb09c27ec48bf69",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-session": "*",
+                "php": "8.2 - 8.5"
+            },
+            "conflict": {
+                "nette/di": "<3.0"
+            },
+            "require-dev": {
+                "latte/latte": "^2.5 || ^3.0",
+                "nette/di": "^3.0",
+                "nette/http": "^3.0",
+                "nette/mail": "^3.0 || ^4.0",
+                "nette/phpstan-rules": "^1.0",
+                "nette/tester": "^2.6",
+                "nette/utils": "^3.0 || ^4.0",
+                "phpstan/extension-installer": "^1.4@stable",
+                "phpstan/phpstan": "^2.1@stable",
+                "psr/log": "^1.0 || ^2.0 || ^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.12-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Tracy/functions.php"
+                ],
+                "psr-4": {
+                    "Tracy\\": "src"
+                },
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "😎  Tracy: the addictive tool to ease debugging PHP code for cool developers. Friendly design, logging, profiler, advanced features like debugging AJAX calls or CLI support. You will love it.",
+            "homepage": "https://tracy.nette.org",
+            "keywords": [
+                "Xdebug",
+                "debug",
+                "debugger",
+                "nette",
+                "profiler"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/tracy/issues",
+                "source": "https://github.com/nette/tracy/tree/v2.12.1"
+            },
+            "time": "2026-08-18T10:56:11+00:00"
+        },
+        {
             "name": "webmozart/glob",
             "version": "4.7.0",
             "source": {
@@ -13477,6 +13640,98 @@
             "time": "2024-03-07T20:33:40+00:00"
         },
         {
+            "name": "webware/traccio",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "../traccio"
+            },
+            "require": {
+                "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+                "tracy/tracy": "^2.11.0"
+            },
+            "require-dev": {
+                "ext-pdo": "*",
+                "ext-pdo_sqlite": "*",
+                "laminas/laminas-diactoros": "^3.8",
+                "mezzio/mezzio": "^3.26",
+                "php-db/phpdb-sqlite": "^0.2.0",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^11.5.42",
+                "roave/security-advisories": "dev-master",
+                "webware/coding-standard": "^0.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Webware\\Traccio\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "WebwareIntegrationTest\\Traccio\\": "test/integration/",
+                    "WebwareTestAsset\\Traccio\\": "test/asset/",
+                    "WebwareTest\\Traccio\\": "test/unit/"
+                }
+            },
+            "scripts": {
+                "check": [
+                    "@cs-check",
+                    "@sa",
+                    "@test",
+                    "@test-integration"
+                ],
+                "cs-check": [
+                    "vendor/bin/php-cs-fixer check -v"
+                ],
+                "cs-fix": [
+                    "vendor/bin/php-cs-fixer fix"
+                ],
+                "test": [
+                    "phpunit --colors=always --testsuite \"unit test\""
+                ],
+                "test-coverage": [
+                    "phpunit --colors=always --coverage-clover clover.xml"
+                ],
+                "test-integration": [
+                    "phpunit --colors=always --testsuite \"integration test\""
+                ],
+                "sa": [
+                    "vendor/bin/phpstan analyse --memory-limit=256M"
+                ],
+                "sa-gen-baseline": [
+                    "vendor/bin/phpstan analyse --memory-limit=256M --generate-baseline"
+                ],
+                "sa-verbose": [
+                    "vendor/bin/phpstan analyse --memory-limit=256M -vv"
+                ],
+                "upload-coverage": [
+                    "coveralls -v"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Joey Smith",
+                    "email": "jsmith@webinertia.net",
+                    "homepage": "https://github.com/tyrsson/traccio/discussions",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tracy Debugger integration and profiler for Mezzio apps.",
+            "keywords": [
+                "webware",
+                "webware traccio"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "webware/webware-tools",
             "version": "1.0.0-beta.3",
             "dist": {
@@ -13516,9 +13771,11 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "roave/security-advisories": 20,
+        "webware/traccio": 20,
         "webware/webware-admin": 20,
         "webware/webware-console": 20,
-        "webware/webware-htmx": 20
+        "webware/webware-htmx": 20,
+        "webware/webware-navigation": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
