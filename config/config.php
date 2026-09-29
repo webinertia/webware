@@ -59,6 +59,8 @@ $aggregator = new ConfigAggregator(
         \Webware\Message\ConfigProvider::class,
         \Webware\MessageBus\ConfigProvider::class,
         \Webware\Navigation\ConfigProvider::class,
+        // After Mezzio\LaminasView\ConfigProvider: both own AggregateResolver::class, later wins.
+        \Webware\Theme\ConfigProvider::class,
         \Webware\UserManager\ConfigProvider::class,
         // Include cache configuration
         new ArrayProvider($cacheConfig),

@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * This file is part of the Webware package.
+ *
+ * Copyright (c) 2026 Joey Smith <jsmith@webinertia.net>
+ * and contributors.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/*
+ * The default theme's body: content and nothing else. A theme that wants chrome (navigation, a
+ * sidebar, a store switcher) ships it here, which is exactly what the ims theme does.
+ */
+?>
+<div class="container py-4">
+    <?= $this->content ?>
+</div>

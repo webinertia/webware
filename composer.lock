@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f096848bd70f132e265ec173de87d73",
+    "content-hash": "b11259c5bf3b9f1e980f9269ffb695df",
     "packages": [
         {
             "name": "brick/math",
@@ -5418,10 +5418,11 @@
         },
         {
             "name": "webware/message-bus",
-            "version": "2.0.0-beta.3",
+            "version": "2.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../message-bus"
+                "url": "../message-bus",
+                "reference": "d37cc77e70b853bb31d6fdde290aedea869d6c90"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -5506,10 +5507,11 @@
         },
         {
             "name": "webware/webware-acl",
-            "version": "1.0.0",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-acl"
+                "url": "../webware-acl",
+                "reference": "4ef7f9926200bbd0ab43d0962415656822a8611f"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5600,7 +5602,8 @@
             "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-admin"
+                "url": "../webware-admin",
+                "reference": "8f4947451f8e094681f324b2f944e20f4dbd586f"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -5686,7 +5689,8 @@
             "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-console"
+                "url": "../webware-console",
+                "reference": "242e30e31ec41d35cb1942772fea65bdc39b3b70"
             },
             "require": {
                 "laminas/laminas-config-aggregator": "^1.20",
@@ -5767,10 +5771,11 @@
         },
         {
             "name": "webware/webware-core",
-            "version": "1.0.0-alpha.6",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-core"
+                "url": "../webware-core",
+                "reference": "023884e837d11228db44b7facadee8f50bec91ee"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5850,10 +5855,11 @@
         },
         {
             "name": "webware/webware-event",
-            "version": "1.0.0-alpha.2",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-event"
+                "url": "../webware-event",
+                "reference": "44b8bf4dcb3cd405164bc9531767c3f28fc07f39"
             },
             "require": {
                 "phly/phly-event-dispatcher": "^1.5.0",
@@ -5929,7 +5935,8 @@
             "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-htmx"
+                "url": "../webware-htmx",
+                "reference": "a029b7c161206ea696eee38042d812c7f9b36400"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -6005,10 +6012,11 @@
         },
         {
             "name": "webware/webware-log",
-            "version": "2.0.0-alpha.1",
+            "version": "2.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-log"
+                "url": "../webware-log",
+                "reference": "2c3e879a0416c6fda35d03bdfc6987a68ce01785"
             },
             "require": {
                 "laminas/laminas-component-installer": "^3.2",
@@ -6102,10 +6110,11 @@
         },
         {
             "name": "webware/webware-mailer",
-            "version": "1.0.0-beta.5",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-mailer"
+                "url": "../webware-mailer",
+                "reference": "9d82a92acb5ff807accd9fb8dba26982cffbf262"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -6193,10 +6202,11 @@
         },
         {
             "name": "webware/webware-message",
-            "version": "1.0.0-beta.3",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-message"
+                "url": "../webware-message",
+                "reference": "0c7fcaa11a8ccc0d90f8624578084bf349c101e4"
             },
             "require": {
                 "mezzio/mezzio-session": "^1.17.0",
@@ -6288,7 +6298,8 @@
             "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-navigation"
+                "url": "../webware-navigation",
+                "reference": "db4cca1da0d1b8ebc40bd1c23260c52b662aba64"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
@@ -6367,11 +6378,90 @@
             }
         },
         {
-            "name": "webware/webware-usermanager",
-            "version": "1.0.0",
+            "name": "webware/webware-theme",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-usermanager"
+                "url": "../webware-theme",
+                "reference": "d1c05dc382896b8cf2f3e27114be23bd84ea96cb"
+            },
+            "require": {
+                "laminas/laminas-view": "^3.0",
+                "mezzio/mezzio-laminasviewrenderer": "^3.0",
+                "php": "~8.4.1 || ~8.5.0",
+                "psr/container": "^2.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.35.0",
+                "phpbench/phpbench": "^1.7",
+                "phpunit/phpunit": "^13.3",
+                "roave/backward-compatibility-check": "^8.21.0",
+                "roave/security-advisories": "dev-master",
+                "webware/webware-tools": "^1.0.0-beta.3"
+            },
+            "type": "library",
+            "extra": {
+                "laminas": {
+                    "config-provider": "Webware\\Theme\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webware\\Theme\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "WebwareTest\\Theme\\": "test/unit/",
+                    "WebwareTestIntegration\\Theme\\": "test/integration/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit --no-coverage --colors=always --testsuite \"unit test\""
+                ],
+                "test-coverage": [
+                    "phpunit --colors=always --coverage-clover clover.xml --coverage-text"
+                ],
+                "test-integration": [
+                    "phpunit --no-coverage --colors=always --testsuite \"integration test\""
+                ],
+                "mutation-test": [
+                    "infection"
+                ],
+                "test-all": [
+                    "@test && @test-integration && @mutation-test"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Joey Smith",
+                    "email": "jsmith@webinertia.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides theme support via laminas-view to webware applications.",
+            "keywords": [
+                "laminas-view",
+                "mezzio",
+                "theme",
+                "webware"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "webware/webware-usermanager",
+            "version": "1.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "../webware-usermanager",
+                "reference": "dd70aef06881f2d613100f7c038278268e9e0afe"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -13644,7 +13734,8 @@
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../traccio"
+                "url": "../traccio",
+                "reference": "6eae5bad7f76c3580cccedf54e6ecb04cfb30b37"
             },
             "require": {
                 "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
@@ -13733,10 +13824,11 @@
         },
         {
             "name": "webware/webware-tools",
-            "version": "1.0.0-beta.3",
+            "version": "1.0.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../webware-tools"
+                "url": "../webware-tools",
+                "reference": "fa188188a6a755e91ea1bac9c9f22cda6b7b019c"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
@@ -13775,7 +13867,8 @@
         "webware/webware-admin": 20,
         "webware/webware-console": 20,
         "webware/webware-htmx": 20,
-        "webware/webware-navigation": 20
+        "webware/webware-navigation": 20,
+        "webware/webware-theme": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

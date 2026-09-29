@@ -33,14 +33,15 @@ final class ConfigProvider
     {
         return [
             'map'            => [
-                'layout::default' => __DIR__ . '/../templates/layout/default.phtml',
-                'app::home-page'  => __DIR__ . '/../templates/app/home-page.phtml',
-                'error::404'      => __DIR__ . '/../templates/error/404.phtml',
-                'error::error'    => __DIR__ . '/../templates/error/error.phtml',
+                'layout::default' => __DIR__ . '/../templates/default/layout/default.phtml',
+                'body::default'   => __DIR__ . '/../templates/default/body/default.phtml',
+                'app::home-page'  => __DIR__ . '/../templates/default/app/home-page.phtml',
+                'error::404'      => __DIR__ . '/../templates/default/error/404.phtml',
+                'error::error'    => __DIR__ . '/../templates/default/error/error.phtml',
             ],
             'paths'          => [
-                'app'   => [__DIR__ . '/../templates/app'],
-                'error' => [__DIR__ . '/../templates/error'],
+                'app'   => [__DIR__ . '/../templates/default/app'],
+                'error' => [__DIR__ . '/../templates/default/error'],
             ],
             'default_layout' => 'layout::default',
         ];
