@@ -43,7 +43,7 @@ final class ConfigProvider
                 'app'   => [__DIR__ . '/../templates/default/app'],
                 'error' => [__DIR__ . '/../templates/default/error'],
             ],
-            'default_layout' => 'layout::default',
+            'layout'         => 'layout::default',
         ];
     }
 
