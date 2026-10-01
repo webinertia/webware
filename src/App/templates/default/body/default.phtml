@@ -45,6 +45,11 @@ $userNav  = $this->navigation('user');
                     <?= $userNav->menu(['type' => 'horizontal']) ?>
                 </div>
             <?php endif; ?>
+            <button class="btn btn-sm btn-outline-secondary ms-lg-3" type="button" data-theme-toggle
+                    aria-label="Toggle light and dark mode">
+                <i class="bi bi-sun-fill theme-to-light"></i>
+                <i class="bi bi-moon-stars-fill theme-to-dark"></i>
+            </button>
         </div>
     </div>
 </nav>

@@ -401,3 +401,7 @@
 .widget-manage-link { font-size: .75rem; }
 .widget-stat-label  { font-size: .75rem; }
 .widget-footer-text { font-size: .72rem; }
+
+/* Light/Dark control: show the icon for the mode a click switches to. */
+[data-bs-theme="dark"] .theme-to-dark,
+[data-bs-theme="light"] .theme-to-light { display: none; }

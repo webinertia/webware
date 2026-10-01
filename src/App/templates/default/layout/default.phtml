@@ -37,7 +37,13 @@ $this->headLink()
     ->appendStylesheet($this->basePath($this->asset('theme.css')));
 
 $this->headScript()
-    ->appendFile('https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js');
+    ->appendFile('https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js')
+    // Dark is the default; a stored choice wins. Runs in the head so the page never flashes light.
+    ->appendScript(<<<'JS'
+        try {
+            document.documentElement.dataset.bsTheme = localStorage.getItem('webware-theme') || 'dark';
+        } catch (e) {}
+        JS);
 
 $this->inlineScript()
     ->prependFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js')
@@ -45,12 +51,22 @@ $this->inlineScript()
         htmx.onLoad((root) => {
             root.querySelectorAll('.toast').forEach((toast) => bootstrap.Toast.getOrCreateInstance(toast).show());
         });
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('[data-theme-toggle]')) {
+                return;
+            }
+            const next = document.documentElement.dataset.bsTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.bsTheme = next;
+            try {
+                localStorage.setItem('webware-theme', next);
+            } catch (err) {}
+        });
         JS);
 ?>
 
 <?= $this->doctype(); ?>
 
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
     <head>
         <base href="<?= $this->basePath('/'); ?>" />
         <?= $this->headTitle('webware')->setSeparator(' | ') ?>
