@@ -16,13 +16,12 @@ declare(strict_types=1);
  * Theme configuration, keyed by theme name and then by the template address it overrides.
  *
  * The App module's own `templates.map` carries the `default` theme, so these are only the
- * overrides: every address the `ims` theme does not list keeps resolving from `default`. Set
- * `active` to `default` to render the baseline instead, and clear the config cache when changing it.
+ * overrides: every address the `ims` theme does not list keeps resolving from `default`. The active
+ * theme is chosen in `theme.settings.global.php`.
  */
 
 return [
     'theme' => [
-        'active' => 'default',
         'themes' => [
             'ims' => [
                 'layout::default'           => __DIR__ . '/../../src/App/templates/ims/layout/default.phtml',
