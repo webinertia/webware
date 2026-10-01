@@ -70,6 +70,7 @@
         "webware/webware-mailer": "^1.0.0-beta.5",
         "webware/webware-message": "^1.0.0-beta.3",
         "webware/webware-navigation": "1.0.x-dev",
+        "webware/webware-phpdb": "1.0.x-dev",
         "webware/webware-theme": "1.0.x-dev",
         "webware/webware-usermanager": "^1.0"
     },
