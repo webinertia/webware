@@ -33,6 +33,8 @@ $aggregator = new ConfigAggregator(
         \Phly\EventDispatcher\ConfigProvider::class,
         \Mezzio\Session\Ext\ConfigProvider::class,
         \Mezzio\Session\ConfigProvider::class,
+        // After the two Mezzio session providers: it re-points SessionPersistenceInterface at the database.
+        \PhpDb\Session\SessionProvider::class,
         \Mezzio\LaminasView\ConfigProvider::class,
         \Laminas\View\ConfigProvider::class,
         \Laminas\Hydrator\ConfigProvider::class,
