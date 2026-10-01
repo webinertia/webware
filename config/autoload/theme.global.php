@@ -22,14 +22,18 @@ declare(strict_types=1);
 
 return [
     'theme' => [
-        'active' => 'ims',
+        'active' => 'default',
         'themes' => [
             'ims' => [
-                'layout::default' => __DIR__ . '/../../src/App/templates/ims/layout/default.phtml',
-                'body::default'   => __DIR__ . '/../../src/App/templates/ims/body/default.phtml',
-                'app::home-page'  => __DIR__ . '/../../src/App/templates/ims/app/home-page.phtml',
-                'error::404'      => __DIR__ . '/../../src/App/templates/ims/error/404.phtml',
-                'error::error'    => __DIR__ . '/../../src/App/templates/ims/error/error.phtml',
+                'layout::default'           => __DIR__ . '/../../src/App/templates/ims/layout/default.phtml',
+                'body::default'             => __DIR__ . '/../../src/App/templates/ims/body/default.phtml',
+                'app::home-page'            => __DIR__ . '/../../src/App/templates/ims/app/home-page.phtml',
+                'error::404'                => __DIR__ . '/../../src/App/templates/ims/error/404.phtml',
+                'error::error'              => __DIR__ . '/../../src/App/templates/ims/error/error.phtml',
+                'user::login'               => __DIR__ . '/../../src/App/templates/ims/user/login.phtml',
+                'user::registration'        => __DIR__ . '/../../src/App/templates/ims/user/registration.phtml',
+                'user::resend-verification' => __DIR__ . '/../../src/App/templates/ims/user/resend-verification.phtml',
+                'user::verify-email'        => __DIR__ . '/../../src/App/templates/ims/user/verify-email.phtml',
             ],
         ],
     ],
