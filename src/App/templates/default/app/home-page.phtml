@@ -20,14 +20,44 @@ $this->headTitle('Home');
  * installed components (decision D-018), and this layout only shows where they will sit.
  */
 $features = [
-    ['icon' => 'bi-pencil-square', 'title' => 'Write', 'text' => 'Publish pages and posts from one simple editor, with drafts and a clear history.'],
-    ['icon' => 'bi-palette', 'title' => 'Design', 'text' => 'Switch themes in a click. Your content stays put while the look changes around it.'],
-    ['icon' => 'bi-people', 'title' => 'Collaborate', 'text' => 'Give each person exactly the access they need, and nothing more.'],
+    [
+        'icon'  => 'bi-pencil-square',
+        'title' => 'Write',
+        'text'  => 'Publish pages and posts from one simple editor, with drafts and a clear history.',
+    ],
+    [
+        'icon'  => 'bi-palette',
+        'title' => 'Design',
+        'text'  => 'Switch themes in a click. Your content stays put while the look changes around it.',
+    ],
+    [
+        'icon'  => 'bi-people',
+        'title' => 'Collaborate',
+        'text'  => 'Give each person exactly the access they need, and nothing more.',
+    ],
 ];
 $posts = [
-    ['icon' => 'bi-newspaper', 'title' => 'Welcome to the new site', 'text' => 'A short tour of what has changed and where to find things.', 'date' => 'October 1, 2026', 'tag' => 'News'],
-    ['icon' => 'bi-lightbulb', 'title' => 'Five ways to get more from your pages', 'text' => 'Small habits that make content easier to find and easier to read.', 'date' => 'September 24, 2026', 'tag' => 'Guides'],
-    ['icon' => 'bi-brush', 'title' => 'Choosing a theme that fits', 'text' => 'Colour, type and layout choices, and how they change the feel of a site.', 'date' => 'September 17, 2026', 'tag' => 'Design'],
+    [
+        'icon'  => 'bi-newspaper',
+        'title' => 'Welcome to the new site',
+        'text'  => 'A short tour of what has changed and where to find things.',
+        'date'  => 'October 1, 2026',
+        'tag'   => 'News',
+    ],
+    [
+        'icon'  => 'bi-lightbulb',
+        'title' => 'Five ways to get more from your pages',
+        'text'  => 'Small habits that make content easier to find and easier to read.',
+        'date'  => 'September 24, 2026',
+        'tag'   => 'Guides',
+    ],
+    [
+        'icon'  => 'bi-brush',
+        'title' => 'Choosing a theme that fits',
+        'text'  => 'Colour, type and layout choices, and how they change the feel of a site.',
+        'date'  => 'September 17, 2026',
+        'tag'   => 'Design',
+    ],
 ];
 ?>
 <section class="py-5 text-center">
@@ -67,7 +97,9 @@ $posts = [
                         <i class="bi <?= $this->escapeHtmlAttr($post['icon']) ?> fs-1 text-body-secondary"></i>
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <span class="badge text-bg-primary align-self-start mb-2"><?= $this->escapeHtml($post['tag']) ?></span>
+                        <span class="badge text-bg-primary align-self-start mb-2"><?= $this->escapeHtml(
+                            $post['tag'],
+                        ) ?></span>
                         <h3 class="h5 card-title"><?= $this->escapeHtml($post['title']) ?></h3>
                         <p class="card-text text-body-secondary"><?= $this->escapeHtml($post['text']) ?></p>
                         <div class="mt-auto d-flex align-items-center justify-content-between">
