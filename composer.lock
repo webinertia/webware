@@ -5692,7 +5692,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-console",
-                "reference": "242e30e31ec41d35cb1942772fea65bdc39b3b70"
+                "reference": "32d73404d3668b31a3f91fa32ccbfc9b18afbdfe"
             },
             "require": {
                 "laminas/laminas-config-aggregator": "^1.20",
