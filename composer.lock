@@ -5605,7 +5605,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "dc50df98f72c816325fb595c0588aefabc4a12f3"
+                "reference": "f7462afeb1f7aeb828fa2760f2390b34d60457d3"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
