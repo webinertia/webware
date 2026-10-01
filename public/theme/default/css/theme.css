@@ -1,0 +1,403 @@
+/*
+ * Webware default theme, loaded after Bootstrap 5.3.8's own stylesheet.
+ *
+ * Bootstrap's markup and spacing are untouched. Only the colour tokens change: the two logo colours
+ * of the webinertia org become `primary` (purple) and `secondary` (green). Bootstrap's compiled
+ * components hard-code their blue, so each component that uses a brand colour gets its tokens
+ * restated here; with no Sass build, this file is the whole customisation.
+ *
+ * Dark is the default (see the `data-bs-theme` attribute on <html>), light is the alternative.
+ * Values were chosen against WCAG AA: white text on purple is 4.74:1, black text on green is
+ * 6.66:1, and the dark-mode text tints are 4.6:1 or better on Bootstrap's #212529 body.
+ */
+
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #7e5ae0;
+  --bs-primary-rgb: 126, 90, 224;
+  --bs-secondary: #05a578;
+  --bs-secondary-rgb: 5, 165, 120;
+
+  --bs-primary-text-emphasis: #32245a;
+  --bs-primary-bg-subtle: #e5def9;
+  --bs-primary-border-subtle: #cbbdf3;
+  --bs-secondary-text-emphasis: #024230;
+  --bs-secondary-bg-subtle: #cdede4;
+  --bs-secondary-border-subtle: #9bdbc9;
+
+  --bs-link-color: #7e5ae0;
+  --bs-link-color-rgb: 126, 90, 224;
+  --bs-link-hover-color: #6548b3;
+  --bs-link-hover-color-rgb: 101, 72, 179;
+}
+
+[data-bs-theme="dark"] {
+  --bs-primary-text-emphasis: #b29cec;
+  --bs-primary-bg-subtle: #19122d;
+  --bs-primary-border-subtle: #4c3686;
+  --bs-secondary-text-emphasis: #69c9ae;
+  --bs-secondary-bg-subtle: #012118;
+  --bs-secondary-border-subtle: #036348;
+
+  --bs-link-color: #b29cec;
+  --bs-link-color-rgb: 178, 156, 236;
+  --bs-link-hover-color: #cbbdf3;
+  --bs-link-hover-color-rgb: 203, 189, 243;
+}
+
+/* Green on white is 3.15:1, so text-sized green is darkened in light mode only. */
+[data-bs-theme="light"] .text-secondary,
+[data-bs-theme="light"] .link-secondary {
+  --bs-secondary-rgb: 4, 132, 96;
+}
+
+.btn-primary {
+  --bs-btn-bg: #7e5ae0;
+  --bs-btn-border-color: #7e5ae0;
+  --bs-btn-hover-bg: #6b4cbe;
+  --bs-btn-hover-border-color: #6548b3;
+  --bs-btn-focus-shadow-rgb: 145, 115, 229;
+  --bs-btn-active-bg: #6548b3;
+  --bs-btn-active-border-color: #5e44a8;
+  --bs-btn-disabled-bg: #7e5ae0;
+  --bs-btn-disabled-border-color: #7e5ae0;
+}
+
+.btn-secondary {
+  --bs-btn-color: #000;
+  --bs-btn-bg: #05a578;
+  --bs-btn-border-color: #05a578;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #2ab28c;
+  --bs-btn-hover-border-color: #1eae86;
+  --bs-btn-focus-shadow-rgb: 4, 140, 102;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #37b793;
+  --bs-btn-active-border-color: #1eae86;
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: #05a578;
+  --bs-btn-disabled-border-color: #05a578;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #7e5ae0;
+  --bs-btn-border-color: #7e5ae0;
+  --bs-btn-hover-bg: #7e5ae0;
+  --bs-btn-hover-border-color: #7e5ae0;
+  --bs-btn-focus-shadow-rgb: 126, 90, 224;
+  --bs-btn-active-bg: #7e5ae0;
+  --bs-btn-active-border-color: #7e5ae0;
+  --bs-btn-disabled-color: #7e5ae0;
+  --bs-btn-disabled-border-color: #7e5ae0;
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: #048460;
+  --bs-btn-border-color: #048460;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #05a578;
+  --bs-btn-hover-border-color: #05a578;
+  --bs-btn-focus-shadow-rgb: 5, 165, 120;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #05a578;
+  --bs-btn-active-border-color: #05a578;
+  --bs-btn-disabled-color: #048460;
+  --bs-btn-disabled-border-color: #048460;
+}
+
+/* #7e5ae0 is 3.25:1 on the dark body, so dark-mode outline purple is lightened to 4.63:1. */
+[data-bs-theme="dark"] .btn-outline-primary {
+  --bs-btn-color: #987be6;
+  --bs-btn-border-color: #987be6;
+  --bs-btn-disabled-color: #987be6;
+  --bs-btn-disabled-border-color: #987be6;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary {
+  --bs-btn-color: #05a578;
+  --bs-btn-border-color: #05a578;
+  --bs-btn-disabled-color: #05a578;
+  --bs-btn-disabled-border-color: #05a578;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #bfadf0;
+  box-shadow: 0 0 0 0.25rem rgba(126, 90, 224, 0.25);
+}
+
+.form-check-input:checked,
+.form-check-input[type="checkbox"]:indeterminate {
+  background-color: #7e5ae0;
+  border-color: #7e5ae0;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #7e5ae0;
+}
+
+.pagination {
+  --bs-pagination-active-bg: #7e5ae0;
+  --bs-pagination-active-border-color: #7e5ae0;
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(126, 90, 224, 0.25);
+}
+
+.list-group {
+  --bs-list-group-active-bg: #7e5ae0;
+  --bs-list-group-active-border-color: #7e5ae0;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #7e5ae0;
+}
+
+.progress {
+  --bs-progress-bar-bg: #7e5ae0;
+}
+
+/*
+ * Neutral hooks that webware-acl's templates carry (acl-*, widget-*, badge-xs). The IMS app styled the
+ * same markup with ims-* names; those rules are ported here with Bootstrap tokens in place of the fixed
+ * dark-mode colours, so both colour modes work. HTTP method and privilege colours stay on Bootstrap's
+ * semantic success/primary/warning/danger/info, not the brand colours.
+ */
+.badge-xs { font-size: .65rem; }
+
+.acl-search-box { max-width: 320px; }
+
+.acl-route-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+  font-size: .8125rem;
+}
+.acl-route-row:last-of-type { border-bottom: none; }
+.acl-route-row:hover { background: var(--bs-tertiary-bg); }
+.acl-route-name {
+  font-family: var(--bs-font-monospace);
+  color: var(--bs-primary-text-emphasis);
+  font-size: .8125rem;
+}
+
+.acl-method-pill {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+.acl-method-GET {
+  background: rgba(var(--bs-success-rgb), .18);
+  color: var(--bs-success-text-emphasis);
+  border-color: rgba(var(--bs-success-rgb), .35);
+}
+.acl-method-POST {
+  background: rgba(var(--bs-primary-rgb), .15);
+  color: var(--bs-primary-text-emphasis);
+  border-color: rgba(var(--bs-primary-rgb), .30);
+}
+.acl-method-PUT,
+.acl-method-PATCH {
+  background: rgba(var(--bs-warning-rgb), .12);
+  color: var(--bs-warning-text-emphasis);
+  border-color: rgba(var(--bs-warning-rgb), .30);
+}
+.acl-method-DELETE {
+  background: rgba(var(--bs-danger-rgb), .15);
+  color: var(--bs-danger-text-emphasis);
+  border-color: rgba(var(--bs-danger-rgb), .35);
+}
+
+.acl-priv-read   { border-color: var(--bs-primary) !important; color: var(--bs-primary-text-emphasis) !important; }
+.acl-priv-create { border-color: var(--bs-success) !important; color: var(--bs-success-text-emphasis) !important; }
+.acl-priv-update { border-color: var(--bs-warning) !important; color: var(--bs-warning-text-emphasis) !important; }
+.acl-priv-delete { border-color: var(--bs-danger)  !important; color: var(--bs-danger-text-emphasis)  !important; }
+.acl-priv-custom { border-color: var(--bs-info)    !important; color: var(--bs-info-text-emphasis)    !important; }
+
+.acl-rules-panel {
+  background: var(--bs-tertiary-bg);
+  border-top: 1px solid var(--bs-border-color-translucent);
+  padding: 10px 12px;
+  font-size: .8rem;
+}
+.acl-rule-inherited { opacity: .72; }
+.acl-rules-table thead th {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding-bottom: 4px;
+}
+.acl-rules-table td { vertical-align: middle; }
+.acl-rules-table .badge { white-space: normal; word-break: break-word; }
+.acl-rules-inherited-header td {
+  border-top: 1px solid var(--bs-border-color-translucent);
+  background: var(--bs-tertiary-bg);
+  font-size: .75rem;
+}
+#acl-rule-offcanvas { --bs-offcanvas-width: min(600px, 95vw); }
+
+/* Protect-route wizard: stepper */
+.acl-wiz-stepper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.acl-wiz-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 0;
+}
+.acl-wiz-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 13px;
+  left: calc(50% + 14px);
+  right: calc(-50% + 14px);
+  height: 2px;
+  background: var(--bs-border-color);
+  z-index: 0;
+}
+.acl-wiz-step:not(:last-child).done::after { background: var(--bs-primary); }
+.acl-wiz-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  font-weight: 700;
+  border: 2px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  color: var(--bs-secondary-color);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.acl-wiz-step.active .acl-wiz-circle { border-color: var(--bs-primary); color: var(--bs-primary-text-emphasis); }
+.acl-wiz-step.done .acl-wiz-circle { border-color: var(--bs-primary); background: var(--bs-primary); color: #fff; }
+.acl-wiz-label {
+  font-size: .65rem;
+  text-align: center;
+  margin-top: 4px;
+  color: var(--bs-secondary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+.acl-wiz-step.active .acl-wiz-label { color: var(--bs-primary-text-emphasis); font-weight: 600; }
+.acl-wiz-step.done .acl-wiz-label { color: var(--bs-body-color); }
+
+/* Wizard: grant cards. The selected state keeps the body text colour so it reads in both modes. */
+.acl-grant-card {
+  border: 2px solid var(--bs-border-color);
+  border-radius: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  height: 100%;
+}
+.acl-grant-card:hover { border-color: var(--bs-secondary-color); }
+.acl-grant-card.selected { border-color: var(--bs-primary); background: rgba(var(--bs-primary-rgb), .07); }
+.acl-grant-allow { background: rgba(var(--bs-success-rgb), .04); }
+.acl-grant-allow:hover { border-color: var(--bs-success); background: rgba(var(--bs-success-rgb), .08); }
+.acl-grant-allow.selected { border-color: var(--bs-success); background: rgba(var(--bs-success-rgb), .16); }
+.acl-grant-deny { background: rgba(var(--bs-danger-rgb), .04); }
+.acl-grant-deny:hover { border-color: var(--bs-danger); background: rgba(var(--bs-danger-rgb), .08); }
+.acl-grant-deny.selected { border-color: var(--bs-danger); background: rgba(var(--bs-danger-rgb), .16); }
+.acl-grant-icon { font-size: 1.4rem; margin-bottom: 6px; }
+
+/* Wizard: role hierarchy tree */
+.acl-role-tree-wrap { max-height: 260px; overflow-y: auto; }
+.acl-role-list { list-style: none; padding-left: 0; margin: 0; }
+.acl-role-item {
+  display: block;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .1s;
+  user-select: none;
+}
+.acl-role-item:hover { background: var(--bs-tertiary-bg); }
+.acl-role-item.selected {
+  background: rgba(var(--bs-primary-rgb), .15);
+  outline: 1px solid rgba(var(--bs-primary-rgb), .35);
+}
+.acl-role-item-main { display: flex; align-items: center; gap: 6px; }
+.acl-role-ancestry { font-size: .75rem; color: var(--bs-secondary-color); padding-left: 1.4rem; }
+.acl-role-item[data-depth="1"] .acl-role-item-main { padding-left: 1rem; }
+.acl-role-item[data-depth="1"] .acl-role-ancestry { padding-left: 2.4rem; }
+.acl-role-item[data-depth="2"] .acl-role-item-main { padding-left: 2rem; }
+.acl-role-item[data-depth="2"] .acl-role-ancestry { padding-left: 3.4rem; }
+.acl-role-item[data-depth="3"] .acl-role-item-main { padding-left: 3rem; }
+.acl-role-item[data-depth="3"] .acl-role-ancestry { padding-left: 4.4rem; }
+.acl-role-item[data-depth="4"] .acl-role-item-main { padding-left: 4rem; }
+.acl-role-item[data-depth="4"] .acl-role-ancestry { padding-left: 5.4rem; }
+.acl-role-item[data-depth="5"] .acl-role-item-main { padding-left: 5rem; }
+.acl-role-item[data-depth="5"] .acl-role-ancestry { padding-left: 6.4rem; }
+.acl-role-item[data-depth="6"] .acl-role-item-main { padding-left: 6rem; }
+.acl-role-item[data-depth="6"] .acl-role-ancestry { padding-left: 7.4rem; }
+
+/* Wizard: privilege cards */
+.acl-priv-card {
+  border: 2px solid var(--bs-border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.acl-priv-card:hover { border-color: var(--bs-secondary-color); }
+.acl-priv-card.selected-read   { border-color: var(--bs-primary); background: rgba(var(--bs-primary-rgb), .10); }
+.acl-priv-card.selected-create { border-color: var(--bs-success); background: rgba(var(--bs-success-rgb), .08); }
+.acl-priv-card.selected-update { border-color: var(--bs-warning); background: rgba(var(--bs-warning-rgb), .08); }
+.acl-priv-card.selected-delete { border-color: var(--bs-danger);  background: rgba(var(--bs-danger-rgb),  .08); }
+.acl-priv-card.selected-custom { border-color: var(--bs-info);    background: rgba(var(--bs-info-rgb),    .08); }
+
+/* Wizard: assertion cards */
+.acl-assertion-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.acl-assertion-card:hover { border-color: var(--bs-primary); background: rgba(var(--bs-primary-rgb), .05); }
+.acl-assertion-card.selected { border-color: var(--bs-primary); background: rgba(var(--bs-primary-rgb), .10); }
+
+/* Wizard: review summary */
+.acl-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+  font-size: .8125rem;
+}
+.acl-summary-item:last-child { border-bottom: none; }
+.acl-summary-label { color: var(--bs-secondary-color); font-size: .75rem; }
+
+/* ACL dashboard widget */
+.widget-manage-link { font-size: .75rem; }
+.widget-stat-label  { font-size: .75rem; }
+.widget-footer-text { font-size: .72rem; }

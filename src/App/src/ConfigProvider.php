@@ -87,6 +87,9 @@ final class ConfigProvider
             'dependencies'      => $this->getDependencies(),
             'router'            => $this->getRouter(),
             'templates'         => $this->getTemplates(),
+            'theme'             => [
+                'assets' => ['default' => ['theme.css' => 'css/theme.css']],
+            ],
             AclInterface::class => [
                 'rule_seed_providers' => [
                     Acl\RuleSeeds::class,
