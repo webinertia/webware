@@ -70,7 +70,7 @@ final class ConfigProviderTest extends TestCase
                 'layout' => 'layout::default',
             ],
             'theme'             => [
-                'assets' => ['default' => ['theme.css' => 'css/theme.css']],
+                'assets' => ['default' => ['theme.css' => 'css/theme.css', 'logo' => 'img/webware.png']],
             ],
             AclInterface::class => [
                 'rule_seed_providers' => [
