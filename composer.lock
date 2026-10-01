@@ -5511,7 +5511,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "4b71b1a39b6fd3e8aa092a1b2bffd192d769f4fd"
+                "reference": "124ecb2e30eb6124ea2aeab6df3945357951d16f"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5605,7 +5605,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "3621315e8df619e5989aa98e0b457507fa3dd198"
+                "reference": "6223f01c5546b93766767e5f3762980a929b8ff4"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -6464,7 +6464,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-theme",
-                "reference": "d0ffc68983e6876660c86b27b6a42994edc9bdf8"
+                "reference": "e74f64ef4187870eee2dbcf61d0a78fb8393a808"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
