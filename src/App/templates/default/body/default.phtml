@@ -13,46 +13,57 @@ declare(strict_types=1);
  */
 
 /*
- * The default theme's body: a top navbar and the content. The menus come from webware-navigation
- * (`main`, `admin` and `user`, as in the ims shell), so what a visitor sees is whatever routes are
- * tagged for them and the ACL allows. A theme that wants different chrome (a sidebar, a store
- * switcher) ships its own body, which is exactly what the ims theme does.
+ * The default theme's body: a slim top bar, a slide-out dock holding the vertical menus, and the
+ * content. The menus come from webware-navigation (`main`, `admin` and `user`, as in the ims shell),
+ * so what a visitor sees is whatever routes are tagged for them and the ACL allows. A theme that
+ * wants different chrome ships its own body, which is exactly what the ims theme does.
  */
 $adminNav = $this->navigation('admin');
 $userNav  = $this->navigation('user');
+$logo     = $this->escapeHtmlAttr($this->basePath($this->asset('logo')));
 ?>
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= $this->basePath('/') ?>">
-            <img src="<?= $this->escapeHtmlAttr($this->basePath($this->asset('logo'))) ?>"
-                 alt="" width="28" height="28">
-            <span class="fw-semibold">webware</span>
-        </a>
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#appNavbar"
-                aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="appNavbar">
-            <div class="me-auto d-lg-flex align-items-lg-center gap-lg-3">
-                <?= $this->navigation('main')->menu(['type' => 'horizontal']) ?>
-                <?php if ($adminNav->getItems() !== []): ?>
-                    <?= $adminNav->menu(['type' => 'horizontal']) ?>
-                <?php endif; ?>
-            </div>
-            <?php if ($userNav->getItems() !== []): ?>
-                <div class="d-lg-flex align-items-lg-center">
-                    <?= $userNav->menu(['type' => 'horizontal']) ?>
-                </div>
-            <?php endif; ?>
-            <button class="btn btn-sm btn-outline-secondary ms-lg-3" type="button" data-theme-toggle
-                    aria-label="Toggle light and dark mode">
-                <i class="bi bi-sun-fill theme-to-light"></i>
-                <i class="bi bi-moon-stars-fill theme-to-dark"></i>
+<header class="navbar bg-body-tertiary border-bottom">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-secondary" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#appDock"
+                    aria-controls="appDock" aria-label="Open menu">
+                <i class="bi bi-list fs-5"></i>
             </button>
+            <a class="navbar-brand d-flex align-items-center gap-2 m-0" href="<?= $this->basePath('/') ?>">
+                <img src="<?= $logo ?>" alt="" width="28" height="28">
+                <span class="fw-semibold">webware</span>
+            </a>
         </div>
+        <button class="btn btn-sm btn-outline-secondary" type="button" data-theme-toggle
+                aria-label="Toggle light and dark mode">
+            <i class="bi bi-sun-fill theme-to-light"></i>
+            <i class="bi bi-moon-stars-fill theme-to-dark"></i>
+        </button>
     </div>
-</nav>
+</header>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="appDock" aria-labelledby="appDockLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title d-flex align-items-center gap-2" id="appDockLabel">
+            <img src="<?= $logo ?>" alt="" width="28" height="28">
+            webware
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <?= $this->navigation('main')->menu() ?>
+        <?php if ($adminNav->getItems() !== []): ?>
+            <div class="small text-uppercase text-body-secondary fw-semibold mt-3 mb-1 px-2">Admin</div>
+            <?= $adminNav->menu() ?>
+        <?php endif; ?>
+        <?php if ($userNav->getItems() !== []): ?>
+            <div class="mt-auto pt-3 border-top">
+                <?= $userNav->menu() ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 <div class="container py-4">
     <?= $this->content ?>
 </div>

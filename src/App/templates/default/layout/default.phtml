@@ -61,6 +61,14 @@ $this->inlineScript()
                 localStorage.setItem('webware-theme', next);
             } catch (err) {}
         });
+        // The dock lives inside <main>, so hide it before a boosted navigation swaps the body.
+        document.addEventListener('htmx:beforeRequest', () => {
+            const dock = document.getElementById('appDock');
+            const instance = dock ? bootstrap.Offcanvas.getInstance(dock) : null;
+            if (instance) {
+                instance.hide();
+            }
+        });
         JS);
 ?>
 
