@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use Webware\Core\AclInterface;
+
 /**
  * Wiring entry point for the package.
  *
@@ -24,6 +26,21 @@ namespace App;
  */
 final class ConfigProvider
 {
+    /** @return array<string, mixed> */
+    public function getDependencies(): array
+    {
+        return [
+            'factories'  => [
+                Http\RequestHandler\HomePageHandler::class =>
+                    Http\RequestHandler\Container\HomePageHandlerFactory::class,
+            ],
+            'invokables' => [
+                RouteProvider::class => RouteProvider::class,
+                Acl\RuleSeeds::class => Acl\RuleSeeds::class,
+            ],
+        ];
+    }
+
     /**
      * Returns the templates configuration
      *
@@ -32,26 +49,34 @@ final class ConfigProvider
     public function getTemplates(): array
     {
         return [
-            'map'            => [
+            'map'    => [
                 'layout::default' => __DIR__ . '/../templates/default/layout/default.phtml',
                 'body::default'   => __DIR__ . '/../templates/default/body/default.phtml',
                 'app::home-page'  => __DIR__ . '/../templates/default/app/home-page.phtml',
                 'error::404'      => __DIR__ . '/../templates/default/error/404.phtml',
                 'error::error'    => __DIR__ . '/../templates/default/error/error.phtml',
             ],
-            'paths'          => [
+            'paths'  => [
                 'app'   => [__DIR__ . '/../templates/default/app'],
                 'error' => [__DIR__ . '/../templates/default/error'],
             ],
-            'layout'         => 'layout::default',
+            'layout' => 'layout::default',
         ];
     }
 
-    /** @return array<string, mixed> */
-    private function getDependencies(): array
+    /**
+     * Routes are declared by provider class: mezzio's RouteCollectorDelegator
+     * resolves each entry from the container and calls registerRoutes() before
+     * handing the collector to the router.
+     *
+     * @return array{route-providers: list<class-string>}
+     */
+    private function getRouter(): array
     {
         return [
-            'factories' => [],
+            'route-providers' => [
+                RouteProvider::class,
+            ],
         ];
     }
 
@@ -59,8 +84,14 @@ final class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencies(),
-            'templates'    => $this->getTemplates(),
+            'dependencies'      => $this->getDependencies(),
+            'router'            => $this->getRouter(),
+            'templates'         => $this->getTemplates(),
+            AclInterface::class => [
+                'rule_seed_providers' => [
+                    Acl\RuleSeeds::class,
+                ],
+            ],
         ];
     }
 }
