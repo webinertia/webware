@@ -31,6 +31,7 @@ use Webware\Core\Http\Middleware\AttachCoreServicesMiddleware;
 use Webware\Event\Http\Middleware\EventDispatcherMiddleware;
 use Webware\Htmx\Http\Middleware\DetectAjaxRequestMiddleware;
 use Webware\Log\Http\Middleware\MonologMiddleware;
+use Webware\Message\Http\Middleware\MessageMiddleware;
 use Webware\Navigation\Http\Middleware\NavigationMiddleware;
 use Webware\Traccio\Middleware\TracyDebuggerMiddleware;
 use Webware\UserManager\Http\Middleware\IdentityMiddleware;
@@ -48,6 +49,9 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(EventDispatcherMiddleware::class);
     $app->pipe(ServerUrlMiddleware::class);
     $app->pipe(SessionMiddleware::class);
+
+    // Attaches the system messenger to the request; the flash messages the user pages raise need it.
+    $app->pipe(MessageMiddleware::class);
 
     // Resolves the identity from the session and attaches a UserInterface to
     // every request. Must run after SessionMiddleware. It never denies access —

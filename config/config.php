@@ -25,6 +25,7 @@ $cacheConfig = [
 
 $aggregator = new ConfigAggregator(
     [
+        \PhpDb\WebwareProvider::class,
         \Laminas\InputFilter\ConfigProvider::class,
         \Laminas\Filter\ConfigProvider::class,
         \Laminas\Validator\ConfigProvider::class,

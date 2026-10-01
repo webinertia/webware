@@ -19,13 +19,18 @@
  *
  * - The `debug` flag is _enabled_.
  * - Configuration caching is _disabled_.
+ * - Tracy's error handler is _enabled_, so Traccio's panels and the bluescreen render.
  */
 
 declare(strict_types=1);
 
 use Laminas\ConfigAggregator\ConfigAggregator;
+use Tracy\Debugger;
 
 return [
     ConfigAggregator::ENABLE_CACHE => false,
     'debug'                        => true,
+    Debugger::class                => [
+        'enable' => Debugger::Development,
+    ],
 ];
