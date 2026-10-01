@@ -5511,7 +5511,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "35f06fc48d0c1b204f3408f0fdc42bcf7ed57977"
+                "reference": "4b71b1a39b6fd3e8aa092a1b2bffd192d769f4fd"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5536,7 +5536,8 @@
                 "webware/webware-htmx": "1.0.x-dev",
                 "webware/webware-log": "^2.0.0-alpha.1",
                 "webware/webware-message": "^1.0.0-beta.3",
-                "webware/webware-phpdb": "^1.0.0-alpha.1"
+                "webware/webware-phpdb": "^1.0.0-alpha.1",
+                "webware/webware-theme": "^1.0.0-alpha.1"
             },
             "require-dev": {
                 "infection/infection": "^0.35.0",
@@ -5604,7 +5605,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "3c94b389ed59473d374f3417054fe3b35bb6bdca"
+                "reference": "3621315e8df619e5989aa98e0b457507fa3dd198"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -6013,7 +6014,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-log",
-                "reference": "150cb7cce68e94e9e2edb97d8672006cf319ee90"
+                "reference": "46591794bfbb3b3e10c2a9dd1be42021c8ae81a5"
             },
             "require": {
                 "laminas/laminas-component-installer": "^3.2",
@@ -6036,10 +6037,12 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
+                "webware/webware-console": "1.0.x-dev",
                 "webware/webware-tools": "^1.0.0-beta.2"
             },
             "suggest": {
-                "php-db/phpdb-mysql": "Required when using PhpDbHandler with a MySQL/MariaDB database"
+                "php-db/phpdb-mysql": "Required when using PhpDbHandler with a MySQL/MariaDB database",
+                "webware/webware-console": "Provides the console that runs log:init-db to create the log table"
             },
             "type": "library",
             "extra": {
@@ -6296,7 +6299,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-navigation",
-                "reference": "db4cca1da0d1b8ebc40bd1c23260c52b662aba64"
+                "reference": "f0ab06c327808d27e355958faa8b40ccad0cdf46"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
@@ -6380,7 +6383,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-phpdb",
-                "reference": "12a8a3b4603aa4d6b3f050f38e60a47b17e7ef48"
+                "reference": "ff1bc201973abfbe130afb638edd134d89a4c600"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -6461,7 +6464,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-theme",
-                "reference": "d1c05dc382896b8cf2f3e27114be23bd84ea96cb"
+                "reference": "d0ffc68983e6876660c86b27b6a42994edc9bdf8"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
@@ -6539,7 +6542,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-usermanager",
-                "reference": "bf94dc498c4fb5934dad56df68f8a665a837e767"
+                "reference": "0a50e1dc1bd9a0a1a2bdfb0106439513565cd2bd"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
