@@ -20,9 +20,58 @@
             "config-provider": "App\\ConfigProvider"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../webware-*",
+            "options": {
+                "symlink": true,
+                "reference": "auto",
+                "versions": {
+                    "webware/webware-theme": "1.0.x-dev"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../message-bus",
+            "options": {
+                "symlink": true,
+                "reference": "auto"
+            }
+        },
+        {
+            "type": "path",
+            "url": "../traccio",
+            "options": {
+                "symlink": true,
+                "reference": "auto"
+            }
+        }
+    ],
     "require": {
         "php": "~8.4.1 || ~8.5.0",
-        "psr/container": "^2.0"
+        "laminas/laminas-config-aggregator": "^1.19",
+        "laminas/laminas-diactoros": "^3.8",
+        "laminas/laminas-servicemanager": "^4.5",
+        "laminas/laminas-stdlib": "^3.21",
+        "mezzio/mezzio": "^3.26",
+        "mezzio/mezzio-fastroute": "^3.14",
+        "mezzio/mezzio-helpers": "^5.20",
+        "psr/container": "^2.0",
+        "webware/message-bus": "^2.0.0-beta.3",
+        "webware/webware-acl": "^1.0",
+        "webware/webware-admin": "1.0.x-dev",
+        "webware/webware-console": "1.0.x-dev",
+        "webware/webware-core": "^1.0.0-alpha.8",
+        "webware/webware-event": "^1.0.0-alpha.2",
+        "webware/webware-htmx": "1.0.x-dev",
+        "webware/webware-log": "^2.0.0-alpha.1",
+        "webware/webware-mailer": "^1.0.0-beta.5",
+        "webware/webware-message": "^1.0.0-beta.3",
+        "webware/webware-navigation": "1.0.x-dev",
+        "webware/webware-theme": "1.0.x-dev",
+        "webware/webware-usermanager": "^1.0"
     },
     "require-dev": {
         "infection/infection": "^0.35.0",
@@ -30,6 +79,7 @@
         "phpunit/phpunit": "^13.3",
         "roave/backward-compatibility-check": "^8.21.0",
         "roave/security-advisories": "dev-master",
+        "webware/traccio": "0.1.x-dev",
         "webware/webware-tools": "^1.0.0-beta.3"
     },
     "autoload": {
@@ -59,6 +109,11 @@
         ]
     },
     "scripts": {
+        "menu": "php vendor/bin/webware menu",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S 0.0.0.0:8080 -t public/"
+        ],
         "test": "phpunit --no-coverage --colors=always --testsuite \"unit test\"",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml --coverage-text",
         "test-integration": "phpunit --no-coverage --colors=always --testsuite \"integration test\"",

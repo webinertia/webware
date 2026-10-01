@@ -20,11 +20,14 @@ config:
 
 | Path | Role |
 |---|---|
-| `mago.toml` | Extends the centre (`vendor/webware/webware-tools/mago.toml`) and overrides `php-version` only. Never re-add general rules locally. |
+| `mago.toml` | Extends the centre (`vendor/webware/webware-tools/mago.toml`), pins `php-version` locally, and points the linter and analyzer at the local baselines. General rules stay in the centre; never add them here. |
 | `webware-ci.json` | The required CI workflow's parameter contract — read from the repository root by `webinertia/.github`. |
 | `phpunit.xml.dist` | PHPUnit 13 strict mode: `requireCoverageMetadata`, `failOnNotice`, `failOnWarning`, `failOnDeprecation`. |
 | `compose.yml` / `Dockerfile` / `.devcontainer/` | The containerized toolchain (Composer, PHPUnit, Mago, Infection, PHPBench, roave BC-check). |
 | `src/App/src/ConfigProvider.php` | The application's wiring entry point, declared under `extra.laminas.config-provider`. |
+| `config/` | The Mezzio config: the aggregator (`config.php`), the container (`container.php`), the middleware pipeline (`pipeline.php`), and the layered `autoload/` files. |
+| `public/index.php` | The front controller — `public/` is the document root. |
+| `data/cache/` | The config cache target, held in git by `.gitkeep` only. Dropped by `dev:mode`, which clears it on `--enable`, `--disable` and `--clear-cache`. |
 
 `mago.toml`, `phpunit.xml.dist`, `.gitattributes`, `codecov.yml`, `Dockerfile`,
 `.dockerignore`, `infection.json5.dist`, `phpbench.json.dist` and devcontainer config are
@@ -34,8 +37,10 @@ editing them here.
 
 ## Quality gates
 
-Both MSI gates are set to **95** — the ecosystem standard, not a starting point. Lower them
-only with a deliberate decision, and never silently:
+The MSI gates are declared **per repository** in `webware-ci.json`, and this repository sets both
+to **95**. The required workflow reads them and passes them to Infection as `--min-msi` and
+`--min-covered-msi`, so they are enforced from CI rather than from `infection.json5.dist`, which
+declares no thresholds at all. Lower them only with a deliberate decision, and never silently:
 
 ```json
 "min_msi": "95",
@@ -59,6 +64,26 @@ docker compose exec tooling composer test-integration
 docker compose exec tooling mago lint
 docker compose down
 ```
+
+To boot the application itself:
+
+```shell
+composer serve   # php -S 0.0.0.0:8080 -t public/
+composer menu    # php vendor/bin/webware menu, the console host's interactive menu
+```
+
+`composer menu` opens the console host (`webware/webware-console`), which discovers the commands
+the installed components register: `dev:mode`, `acl:init-db`, `user:init-db`, and the Laminas
+`servicemanager:*` generators. Development mode is driven from there, or directly:
+
+```shell
+vendor/bin/webware dev:mode --enable       # copy the dist file, drop the config cache
+vendor/bin/webware dev:mode --disable      # remove the active file, drop the config cache
+vendor/bin/webware dev:mode --clear-cache  # drop the config cache without changing the mode
+```
+
+No routes are registered yet, so every request answers `404` from Mezzio's default handler —
+that is the expected state until the components are wired in and a route provider exists.
 
 Packages whose tests need MySQL uncomment the `mysql` service in `compose.yml`, mirroring the
 `db_image` / `db_env_json` / `db_port` values they declare in `webware-ci.json`.
