@@ -5511,7 +5511,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "124ecb2e30eb6124ea2aeab6df3945357951d16f"
+                "reference": "55b4434e396dadc513cff6478ef92aac15d56e82"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -6553,7 +6553,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-usermanager",
-                "reference": "adeb7a84d3fbc99c2aede368f676b295fcd52680"
+                "reference": "2d921b9bcfecad7c97d529f07c84aa4b4f68526c"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
