@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b11259c5bf3b9f1e980f9269ffb695df",
+    "content-hash": "a21dd50078c165bed355e04c64346cf2",
     "packages": [
         {
             "name": "brick/math",
@@ -5511,7 +5511,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "4ef7f9926200bbd0ab43d0962415656822a8611f"
+                "reference": "35f06fc48d0c1b204f3408f0fdc42bcf7ed57977"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5531,11 +5531,12 @@
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0",
                 "webware/message-bus": "^2.0.0-beta.3",
-                "webware/webware-admin": "1.0.x-dev",
-                "webware/webware-core": "^1.0.0-alpha.6",
+                "webware/webware-admin": "^1.0.0-alpha.1",
+                "webware/webware-core": "^1.0.0-alpha.8",
                 "webware/webware-htmx": "1.0.x-dev",
                 "webware/webware-log": "^2.0.0-alpha.1",
-                "webware/webware-message": "^1.0.0-beta.3"
+                "webware/webware-message": "^1.0.0-beta.3",
+                "webware/webware-phpdb": "^1.0.0-alpha.1"
             },
             "require-dev": {
                 "infection/infection": "^0.35.0",
@@ -5603,7 +5604,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "8f4947451f8e094681f324b2f944e20f4dbd586f"
+                "reference": "3c94b389ed59473d374f3417054fe3b35bb6bdca"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -5775,7 +5776,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-core",
-                "reference": "023884e837d11228db44b7facadee8f50bec91ee"
+                "reference": "61a98053658a233f8e8520c9339768e3ddcb2f68"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5784,7 +5785,6 @@
                 "mezzio/mezzio-authentication": "^1.13",
                 "php": "~8.4.1 || ~8.5.0",
                 "php-db/phpdb": "^0.6.x-dev",
-                "php-standard-library/type": "^6.2.1",
                 "psr/http-message": "^2.0",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0"
@@ -5794,9 +5794,6 @@
                 "laminas/laminas-diactoros": "^3.8",
                 "laminas/laminas-filter": "3.5.x-dev",
                 "php-db/phpdb": "^0.6.0",
-                "php-db/phpdb-mysql": "^0.5.x-dev",
-                "php-db/phpdb-pgsql": "^0.1.x-dev",
-                "php-db/phpdb-sqlite": "^0.3.x-dev",
                 "phpbench/phpbench": "^1.7",
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
@@ -5936,7 +5933,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-htmx",
-                "reference": "a029b7c161206ea696eee38042d812c7f9b36400"
+                "reference": "58fa4ffadfe7842b6a2973b4f80d8d407a7ff37f"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -6016,7 +6013,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-log",
-                "reference": "2c3e879a0416c6fda35d03bdfc6987a68ce01785"
+                "reference": "150cb7cce68e94e9e2edb97d8672006cf319ee90"
             },
             "require": {
                 "laminas/laminas-component-installer": "^3.2",
@@ -6378,6 +6375,87 @@
             }
         },
         {
+            "name": "webware/webware-phpdb",
+            "version": "1.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "../webware-phpdb",
+                "reference": "12a8a3b4603aa4d6b3f050f38e60a47b17e7ef48"
+            },
+            "require": {
+                "php": "~8.4.1 || ~8.5.0",
+                "php-db/phpdb": "0.6.x-dev",
+                "psr/container": "^2.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.35.0",
+                "laminas/laminas-servicemanager": "^4.5",
+                "php-db/phpdb-mysql": "^0.5.x-dev",
+                "php-db/phpdb-pgsql": "^0.1.x-dev",
+                "php-db/phpdb-sqlite": "^0.3.x-dev",
+                "phpbench/phpbench": "^1.7",
+                "phpunit/phpunit": "^13.3",
+                "roave/backward-compatibility-check": "^8.21.0",
+                "roave/security-advisories": "dev-master",
+                "webware/webware-tools": "^1.0.0-beta.3"
+            },
+            "type": "library",
+            "extra": {
+                "laminas": {
+                    "config-provider": "PhpDb\\WebwareProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpDb\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "WebwareTest\\PhpDb\\": "test/unit/",
+                    "WebwareTestIntegration\\PhpDb\\": "test/integration/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit --no-coverage --colors=always --testsuite \"unit test\""
+                ],
+                "test-coverage": [
+                    "phpunit --colors=always --coverage-clover clover.xml --coverage-text"
+                ],
+                "test-integration": [
+                    "phpunit --no-coverage --colors=always --testsuite \"integration test\""
+                ],
+                "mutation-test": [
+                    "infection"
+                ],
+                "test-all": [
+                    "@test && @test-integration && @mutation-test"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Joey Smith",
+                    "email": "jsmith@webinertia.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PhpDb bridge for the Webware stack: shadows the PhpDb root namespace so packages can replace individual php-db/phpdb classes.",
+            "keywords": [
+                "bridge",
+                "mezzio",
+                "php-db",
+                "webware"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "webware/webware-theme",
             "version": "1.0.x-dev",
             "dist": {
@@ -6461,7 +6539,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-usermanager",
-                "reference": "dd70aef06881f2d613100f7c038278268e9e0afe"
+                "reference": "bf94dc498c4fb5934dad56df68f8a665a837e767"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -6490,12 +6568,13 @@
                 "webmozart/assert": "^2.4.1",
                 "webware/message-bus": "^2.0.0-beta.3",
                 "webware/webware-admin": "1.0.x-dev",
-                "webware/webware-core": "^1.0.0-alpha.5",
+                "webware/webware-core": "^1.0.0-alpha.8",
                 "webware/webware-event": "^1.0.0-alpha.2",
                 "webware/webware-htmx": "1.0.x-dev",
                 "webware/webware-log": "^2.0.0-alpha.1",
                 "webware/webware-mailer": "^1.0.0-beta.5",
-                "webware/webware-message": "^1.0.0-beta.2"
+                "webware/webware-message": "^1.0.0-beta.2",
+                "webware/webware-phpdb": "^1.0.0-alpha.1"
             },
             "require-dev": {
                 "infection/infection": "^0.35.0",
@@ -13828,7 +13907,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "fa188188a6a755e91ea1bac9c9f22cda6b7b019c"
+                "reference": "55d093d7b75c20f340b7bdcb206851cd7e2842c5"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
