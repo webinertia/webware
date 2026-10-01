@@ -55,16 +55,20 @@ final class RouteProviderTest extends TestCase
         /** @var list<array{string, string|null}> $registered */
         $registered = [];
 
+        /** @var Route|null $captured */
+        $captured = null;
+
         $collector = $this->createMock(RouteCollectorInterface::class);
         $collector->expects($this->once())
             ->method('get')
             ->willReturnCallback(
                 static function (string $path, MiddlewareInterface $mw, ?string $name = null) use (
                     &$registered,
+                    &$captured,
                 ): Route {
                     $registered[] = [$path, $name];
 
-                    return new Route($path, $mw, ['GET'], $name);
+                    return $captured = new Route($path, $mw, ['GET'], $name);
                 },
             );
 
@@ -72,5 +76,9 @@ final class RouteProviderTest extends TestCase
 
         self::assertSame([['/', 'app.home']], $registered);
         self::assertSame([[HomePageHandler::class]], $prepared);
+        self::assertSame(
+            ['navigation' => 'main', 'label' => 'Home', 'icon' => 'bi-house-fill', 'parent' => null, 'order' => 10],
+            $captured?->getOptions(),
+        );
     }
 }

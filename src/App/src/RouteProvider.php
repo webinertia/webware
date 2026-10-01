@@ -45,6 +45,12 @@ final readonly class RouteProvider implements RouteProviderInterface
                 Http\RequestHandler\HomePageHandler::class,
             ]),
             name      : Configuration::getRouteNamePrefix() . 'home',
-        );
+        )->setOptions([
+            'navigation' => 'main',
+            'label'      => 'Home',
+            'icon'       => 'bi-house-fill',
+            'parent'     => null,
+            'order'      => 10,
+        ]);
     }
 }

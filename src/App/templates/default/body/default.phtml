@@ -13,10 +13,41 @@ declare(strict_types=1);
  */
 
 /*
- * The default theme's body: content and nothing else. A theme that wants chrome (navigation, a
- * sidebar, a store switcher) ships it here, which is exactly what the ims theme does.
+ * The default theme's body: a top navbar and the content. The menus come from webware-navigation
+ * (`main`, `admin` and `user`, as in the ims shell), so what a visitor sees is whatever routes are
+ * tagged for them and the ACL allows. A theme that wants different chrome (a sidebar, a store
+ * switcher) ships its own body, which is exactly what the ims theme does.
  */
+$adminNav = $this->navigation('admin');
+$userNav  = $this->navigation('user');
 ?>
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= $this->basePath('/') ?>">
+            <img src="<?= $this->escapeHtmlAttr($this->basePath($this->asset('logo'))) ?>"
+                 alt="" width="28" height="28">
+            <span class="fw-semibold">webware</span>
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#appNavbar"
+                aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="appNavbar">
+            <div class="me-auto d-lg-flex align-items-lg-center gap-lg-3">
+                <?= $this->navigation('main')->menu(['type' => 'horizontal']) ?>
+                <?php if ($adminNav->getItems() !== []): ?>
+                    <?= $adminNav->menu(['type' => 'horizontal']) ?>
+                <?php endif; ?>
+            </div>
+            <?php if ($userNav->getItems() !== []): ?>
+                <div class="d-lg-flex align-items-lg-center">
+                    <?= $userNav->menu(['type' => 'horizontal']) ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
 <div class="container py-4">
     <?= $this->content ?>
 </div>
