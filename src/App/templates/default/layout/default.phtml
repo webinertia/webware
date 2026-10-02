@@ -83,7 +83,7 @@ $this->inlineScript()
         <?= $this->headScript() ?>
     </head>
     <body hx-boost="true" hx-push-url="true" hx-target="main">
-        <main id="app">
+        <main id="app" class="d-flex flex-column min-vh-100">
             <?= $this->body ?>
         </main>
         <?= $this->inlineScript() ?>
