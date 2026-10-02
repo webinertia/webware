@@ -47,42 +47,8 @@ $this->headScript()
 
 $this->inlineScript()
     ->prependFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js')
-    ->appendScript(<<<'JS'
-        htmx.onLoad((root) => {
-            root.querySelectorAll('.toast').forEach((toast) => bootstrap.Toast.getOrCreateInstance(toast).show());
-        });
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('[data-theme-toggle]')) {
-                return;
-            }
-            const next = document.documentElement.dataset.bsTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.dataset.bsTheme = next;
-            try {
-                localStorage.setItem('webware-theme', next);
-            } catch (err) {}
-        });
-        // The dock lives inside <main>, so hide it before a boosted navigation swaps the body.
-        document.addEventListener('htmx:beforeRequest', () => {
-            const dock = document.getElementById('appDock');
-            const instance = dock ? bootstrap.Offcanvas.getInstance(dock) : null;
-            if (instance) {
-                instance.hide();
-            }
-        });
-        document.addEventListener('hidden.bs.modal', (e) => {
-            if (e.target.id === 'sharedModal') {
-                document.getElementById('sharedModalDialog').innerHTML = '';
-            }
-        });
-        // Handlers send HX-Trigger closeModal after a successful save.
-        document.addEventListener('closeModal', () => {
-            const open = document.querySelector('.modal.show');
-            const instance = open ? bootstrap.Modal.getInstance(open) : null;
-            if (instance) {
-                instance.hide();
-            }
-        });
-        JS);
+    ->appendFile($this->basePath($this->asset('messenger.js')))
+    ->appendFile($this->basePath($this->asset('app.js')));
 ?>
 
 <?= $this->doctype(); ?>
@@ -102,6 +68,15 @@ $this->inlineScript()
         <div class="modal fade" id="sharedModal" tabindex="-1" aria-hidden="true">
             <div id="sharedModalDialog"></div>
         </div>
+        <div id="systemMessage" class="toast-container position-fixed bottom-0 end-0 p-4" aria-live="polite" aria-atomic="false"></div>
+        <template id="toastTemplate">
+            <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body toast-message"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </template>
         <?= $this->inlineScript() ?>
     </body>
 </html>
