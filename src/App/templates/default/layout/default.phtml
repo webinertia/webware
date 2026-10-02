@@ -69,6 +69,11 @@ $this->inlineScript()
                 instance.hide();
             }
         });
+        document.addEventListener('hidden.bs.modal', (e) => {
+            if (e.target.id === 'sharedModal') {
+                document.getElementById('sharedModalDialog').innerHTML = '';
+            }
+        });
         JS);
 ?>
 
@@ -86,6 +91,9 @@ $this->inlineScript()
         <main id="app" class="d-flex flex-column min-vh-100">
             <?= $this->body ?>
         </main>
+        <div class="modal fade" id="sharedModal" tabindex="-1" aria-hidden="true">
+            <div id="sharedModalDialog"></div>
+        </div>
         <?= $this->inlineScript() ?>
     </body>
 </html>
