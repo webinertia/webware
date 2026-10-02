@@ -13924,7 +13924,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "55d093d7b75c20f340b7bdcb206851cd7e2842c5"
+                "reference": "7ed6eafdc20b8b2b896310e1c8a16e49444c1c4d"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
