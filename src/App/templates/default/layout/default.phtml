@@ -74,6 +74,14 @@ $this->inlineScript()
                 document.getElementById('sharedModalDialog').innerHTML = '';
             }
         });
+        // Handlers send HX-Trigger closeModal after a successful save.
+        document.addEventListener('closeModal', () => {
+            const open = document.querySelector('.modal.show');
+            const instance = open ? bootstrap.Modal.getInstance(open) : null;
+            if (instance) {
+                instance.hide();
+            }
+        });
         JS);
 ?>
 
