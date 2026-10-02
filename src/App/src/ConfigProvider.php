@@ -88,7 +88,12 @@ final class ConfigProvider
             'router'            => $this->getRouter(),
             'templates'         => $this->getTemplates(),
             'theme'             => [
-                'assets' => ['default' => ['theme.css' => 'css/theme.css', 'logo' => 'img/webware.png']],
+                'assets' => ['default' => [
+                    'theme.css'    => 'css/theme.css',
+                    'logo'         => 'img/webware.png',
+                    'app.js'       => 'js/app.js',
+                    'messenger.js' => 'js/system.messenger.js',
+                ]],
             ],
             AclInterface::class => [
                 'rule_seed_providers' => [
