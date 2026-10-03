@@ -2429,12 +2429,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-db/phpdb-validator.git",
-                "reference": "d15bba45b38fcda2259abf778b3986c087e78afd"
+                "reference": "3fcb6cf75dd6630fe0e726c211979ce9794ec661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-db/phpdb-validator/zipball/d15bba45b38fcda2259abf778b3986c087e78afd",
-                "reference": "d15bba45b38fcda2259abf778b3986c087e78afd",
+                "url": "https://api.github.com/repos/php-db/phpdb-validator/zipball/3fcb6cf75dd6630fe0e726c211979ce9794ec661",
+                "reference": "3fcb6cf75dd6630fe0e726c211979ce9794ec661",
                 "shasum": ""
             },
             "require": {
@@ -2518,7 +2518,7 @@
                 "source": "https://github.com/php-db/phpdb-validator",
                 "forum": "https://github.com/php-db/phpdb-validator/discussions"
             },
-            "time": "2026-10-03T00:56:20+00:00"
+            "time": "2026-10-03T13:14:49+00:00"
         },
         {
             "name": "php-standard-library/ansi",
@@ -6650,7 +6650,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-usermanager",
-                "reference": "6529bd6966098d1f7eff4496d4d9b64fff888dd7"
+                "reference": "bcde61ed06871c8edeeae36f5eebe6cfbbaf4317"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
