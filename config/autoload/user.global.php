@@ -17,7 +17,7 @@ use Webware\Core\UserInterface;
 return [
     UserInterface::class => [
         'base_url'                   => 'http://localhost:8080',
-        'verification_email_subject' => 'Verify your Farmers IMS account',
+        'verification_email_subject' => 'Verify your email address',
         'verification_token_ttl'     => 86400,
     ],
 ];
