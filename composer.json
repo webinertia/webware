@@ -47,6 +47,10 @@
                 "symlink": true,
                 "reference": "auto"
             }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/php-db/phpdb-validator"
         }
     ],
     "require": {
