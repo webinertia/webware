@@ -108,10 +108,10 @@ environment and that the agent should not be making these calls.
 
 ## Loose ends found — none of them touched
 
-- `webware/plan/webware-coordination-handoff-2026-09-30.md` — **untracked and superseded**. Its
-  "NEXT TASK" and its "26 dirty files on `feat/app-acl-seeds`" state predate the merges that
-  followed (that branch landed as PR #7). Left in place rather than committed, because committing it
-  as-is would mislead the next reader. It also duplicates rules recorded here.
+- `webware/plan/webware-coordination-handoff-2026-09-30.md` — **superseded, committed as history**.
+  Its "NEXT TASK" and its "26 dirty files on `feat/app-acl-seeds`" state predate the merges that
+  followed (that branch landed as PR #7). Read it as a record of 2026-09-30, not as current state.
+  It also duplicates rules recorded here.
 - `webware-usermanager/docs/agent-plan-admin-create-user.md` and
   `webware-usermanager/docs/plan-admin-create-user.md` — untracked, and duplicates of the tracked
   `plan/` copies (the first is byte-identical; the second differs only in one relative link).
