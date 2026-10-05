@@ -29,9 +29,34 @@ present. Where they came from is noted so they can be re-established.
   shows `desktop-linux` → `npipe:////./pipe/dockerDesktopLinuxEngine`; `/var/run/docker.sock` exists
   in WSL; `docker info` reports `os=Docker Desktop`, server `29.8.1`, driver `overlayfs`. A compose
   file behaves identically from either side — no compose rewrite is needed for parity.
-- `webware/Dockerfile` installs **pcov and xdebug**. Xdebug is parked at `mode=off` so ordinary runs
-  pay nothing, and is switched on per invocation with `XDEBUG_MODE`. Image config:
-  `xdebug.mode=off`, `xdebug.start_with_request=yes`, `xdebug.client_host=host.docker.internal`.
+- `webware/Dockerfile` installs **pcov and xdebug**, but **xdebug cannot debug as shipped**: the ini
+  it writes sets `xdebug.mode=off`. `webware/.vscode/launch.json` debugs the app with "Listen for
+  Xdebug", which attaches to the *already-running* app server — a process VS Code did not start, so
+  the only xdebug configuration it ever sees is the ini. A shell `XDEBUG_MODE` export cannot reach
+  it. The mode therefore has to be in the ini
+  (`/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini`, written by the Dockerfile):
+  `xdebug.mode=debug`, `xdebug.start_with_request=yes`, `xdebug.client_host=host.docker.internal`.
+- `XDEBUG_MODE` **replaces** the ini's mode, it does not merge with it (measured: ini `debug` plus
+  `XDEBUG_MODE=coverage` gives active modes `["coverage"]`, `debug` dropped). So the ini can hold
+  `debug` for step debugging while a coverage run stays clean: `XDEBUG_MODE=coverage` for coverage,
+  `XDEBUG_MODE=off` for a zero-overhead run. `XDEBUG_CLIENT_HOST` does **not** work (measured);
+  `XDEBUG_CONFIG="client_host=..."` does.
+- With the ini at `debug` and `start_with_request=yes`, every process that does not set the env tries
+  the 9003 connection, prints *"Xdebug: [Step Debug] Could not connect to debugging client"* to
+  stderr, and blocks for `xdebug.connect_timeout_ms` (default 200 ms). `xdebug.connect_timeout_ms=25`
+  in the same ini keeps that off the critical path for composer, phpunit and infection.
+- **`pdo_mysql` is NOT in the tooling image.** Measured inside `webware-tooling:dev`:
+  `PDO::getAvailableDrivers()` returns `["sqlite"]`; `pdo_mysql` false, `mysqli` false. PHP in that
+  container cannot open a MySQL connection at all, so nothing DB-backed can run in it. The DB-backed
+  siblings already carry the fix — `webware-acl`, `webware-core`, `webware-log` and
+  `webware-usermanager` each add `pdo_mysql` to their own Dockerfile; only the DB-less repos and the
+  `webware-tools` preset artifact omit it.
+- **`vendor/webware/*` are relative symlinks that point outside the mounted tree.**
+  `webware/composer.json` declares `path` repositories (`../webware-*`, `../message-bus`,
+  `../traccio`) with `symlink: true`, so `vendor/webware/webware-acl` is a symlink to
+  `../../../webware-acl/`. Under a container that mounts only `.:/app`, that resolves to
+  `/webware-acl`, which does not exist — **the app cannot boot in `tooling` as it is configured
+  today.**
 - `webware/Dockerfile` and `webware/.devcontainer/devcontainer.json` are **byte-identical to the
   `webware-tools` preset artifacts** (`presets/webware-alignment/artifacts/`) — they are
   preset-managed. Change them in `webware-tools` first; editing the local copy forks the template.
@@ -47,26 +72,35 @@ present. Where they came from is noted so they can be re-established.
 - Watermark: `webware/1.0.x` at `af12336` (PR #29), `webware-usermanager/1.0.x` at `12ea198`
   (PR #83).
 
-## Open decisions — the user has not answered these
+## Open decisions
 
-Nothing was changed because of them. **Do not pick one unilaterally**; the user was explicit that
-this is their environment and that the agent should not be making these calls.
+**Already answered by measurement (2026-10-05) — do not re-open:**
 
-1. **The MySQL address from inside the container.** `webware-dev-environment.md` RULE 3 requires one
-   value, `127.0.0.1`, identical on the host and in CI, with no override; RULE 1 forbids the compose
-   service name `mysql` as a PHP host *in any context, on any platform, ever*. Inside `tooling`,
-   `127.0.0.1` is the container itself, so the only doctrine-legal address left is
-   `host.docker.internal:3306` (mysql is published on the host, and `tooling` already carries the
-   `host.docker.internal:host-gateway` alias). But that value differs by *where PHP runs*, which is
-   precisely the override RULE 3 was written to eliminate. Putting PHP in the container re-opens
-   RULE 3 by construction and needs an explicit amendment from the user.
-2. **Reaching the app.** Publishing `8080` on `tooling` in `compose.yml` gives both the Dev
-   Container and plain-compose developers the port. Relying on VS Code's automatic port forwarding
-   gives it only to the Dev Container, which is the parity break to avoid.
-3. **Coverage driver for Infection.** pcov is installed and is the active driver while xdebug sits
-   at `mode=off`; it is roughly 3–5× faster for coverage, and Infection works with either. Xdebug is
-   what step debugging needs specifically. `XDEBUG_MODE` selects per run
-   (`debug` / `coverage` / unset), so this is not either/or — just a default to choose.
+- **The MySQL address from inside the container is `host.docker.internal`, port 3306.** Measured from
+  a container on the `webware_default` network: `host.docker.internal:3306` OPEN, `127.0.0.1:3306`
+  refused (that is the container itself), `mysql:3306` OPEN but forbidden — RULE 1 never lets PHP
+  receive a service name. The rule's original rationale (PHP on the host cannot resolve `mysql`) no
+  longer applies once PHP is containerised, but the rule stands.
+- **The coverage driver is not a choice to make.** `XDEBUG_MODE` replaces the ini's mode wholesale,
+  so the ini can sit at `debug` for step debugging and a coverage run remains clean.
+
+**Still open — do not decide these unilaterally.** The user was explicit that this is their
+environment and that the agent should not be making these calls.
+
+1. **`xdebug.client_host` — the one unresolved value.** The ini must address whatever process listens
+   on 9003. `host.docker.internal` is right when VS Code runs on Windows with the container as the
+   remote; if the PHP Debug extension host runs *inside* the container — which is where a Dev
+   Container puts it — the value must be `127.0.0.1`. That is reasoning about the extension host, not
+   a measurement taken here.
+2. **How the sibling components reach the container.** Per the symlink finding above,
+   `vendor/webware/*` point outside the mounted tree and the app cannot boot in `tooling` as
+   configured. The two candidates — mount the parent directory so the existing `path` repositories
+   resolve, or replace them with `vcs` repositories and let composer clone into `vendor/` — are a
+   real workflow trade-off: the local edit loop against a single-clone reproducible environment,
+   which is what a Windows rebuild actually needs.
+3. **Reaching the app.** Publishing `8080` on `tooling` in `compose.yml` gives both the Dev Container
+   and plain-compose developers the port. Relying on VS Code's automatic port forwarding gives it
+   only to the Dev Container, which is the parity break to avoid.
 4. **Root-owned artifacts.** PHP in the container writes `.phpunit.cache/`, `clover.xml` and
    `infection.log` into the bind-mounted tree as root. That breaks host-side coverage runs and needs
    root to clean up. Running as the host UID, or redirecting the cache directory, belongs with
@@ -85,6 +119,9 @@ this is their environment and that the agent should not be making these calls.
 - A stash in `webware-htmx` (4 test fixture templates, one line each) and one in `webware-phpdb`
   (self-described "byte-identical copy of feat/schema-abstraction, pre-switch"). Local snapshots;
   neither is pushable as-is.
+- `webware/.vscode/launch.json` — the configuration "Listen for Xdebug" depends on — is **gitignored**
+  (`/.vscode` in the root `.gitignore`), so it will not travel to Windows either and has to be
+  recreated there.
 - ~30 open PRs across the org, nearly all Renovate lock-file maintenance. Not this session's work;
   left alone.
 
