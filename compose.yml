@@ -80,7 +80,11 @@ services:
   # port 3306, which is where config/autoload/mysql.local.php points.
   # -------------------------------------------------------------------------
   mysql:
-    image: mysql:26.7
+    # Pinned to the 9.7 LTS line deliberately, and Renovate is blocked from
+    # moving it (see `packageRules` in webinertia/.github renovate-config).
+    # `mysql:26.7` is NOT a newer LTS — it is the *innovation* track: the `lts`
+    # tag resolves to 9.7.2, while `innovation` and `latest` resolve to 26.7.0.
+    image: mysql:9.7
     environment:
       MYSQL_ROOT_HOST: "%"
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
