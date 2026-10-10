@@ -25,7 +25,7 @@ use Override;
  * The App module's routes.
  *
  * A single hardcoded route: the home page. Its path and its name are literals
- * because the module owns them outright — register this class under
+ * because the module owns them outright - register this class under
  * `router.route-providers` and mezzio's RouteCollectorDelegator calls
  * registerRoutes() before the collector is handed to the router.
  */
