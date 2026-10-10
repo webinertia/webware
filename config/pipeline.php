@@ -33,7 +33,7 @@ use Webware\Htmx\Http\Middleware\DetectAjaxRequestMiddleware;
 use Webware\Log\Http\Middleware\MonologMiddleware;
 use Webware\Message\Http\Middleware\MessageMiddleware;
 use Webware\Navigation\Http\Middleware\NavigationMiddleware;
-use Webware\Traccio\Middleware\TracyDebuggerMiddleware;
+use Webware\Traccio\Http\Middleware\TracyDebuggerMiddleware;
 use Webware\UserManager\Http\Middleware\IdentityMiddleware;
 
 // Setup middleware pipeline:
