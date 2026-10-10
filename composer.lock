@@ -2367,12 +2367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-db/phpdb-mysql.git",
-                "reference": "463a8209370ebb73c5db19424175e6945b0ff57e"
+                "reference": "98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-db/phpdb-mysql/zipball/463a8209370ebb73c5db19424175e6945b0ff57e",
-                "reference": "463a8209370ebb73c5db19424175e6945b0ff57e",
+                "url": "https://api.github.com/repos/php-db/phpdb-mysql/zipball/98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1",
+                "reference": "98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1",
                 "shasum": ""
             },
             "require": {
@@ -2421,7 +2421,7 @@
                 "issues": "https://github.com/php-db/phpdb-mysql/issues",
                 "source": "https://github.com/php-db/phpdb-mysql"
             },
-            "time": "2026-09-04T04:45:13+00:00"
+            "time": "2026-10-10T06:21:15+00:00"
         },
         {
             "name": "php-db/phpdb-validator",
@@ -14013,7 +14013,7 @@
             "dist": {
                 "type": "path",
                 "url": "../traccio",
-                "reference": "2af7b7dacd8f84e5330eda10f27cbe665ea4972c"
+                "reference": "7b63650bf6653b43795d670ffdbbf4c61ece7e25"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
