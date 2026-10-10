@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df789e4007a3b70e8f9fc61128d0e642",
+    "content-hash": "cc7043a50f85dee697fe65281c5b8807",
     "packages": [
         {
             "name": "brick/math",
@@ -14009,7 +14009,7 @@
         },
         {
             "name": "webware/traccio",
-            "version": "1.0.x-dev",
+            "version": "1.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "../traccio",
