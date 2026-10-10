@@ -27,6 +27,8 @@ use Webware\Core\AclInterface;
 
 use function dirname;
 
+use const DIRECTORY_SEPARATOR;
+
 #[CoversClass(ConfigProvider::class)]
 #[CoversMethod(ConfigProvider::class, '__invoke')]
 final class ConfigProviderTest extends TestCase
@@ -38,7 +40,13 @@ final class ConfigProviderTest extends TestCase
             dirname(
                 path  : __DIR__,
                 levels: 2,
-            ) . '/src/App/src';
+            )
+            . DIRECTORY_SEPARATOR
+            . 'src'
+            . DIRECTORY_SEPARATOR
+            . 'App'
+            . DIRECTORY_SEPARATOR
+            . 'src';
 
         $expected = [
             'dependencies'      => [
