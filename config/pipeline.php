@@ -54,7 +54,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(MessageMiddleware::class);
 
     // Resolves the identity from the session and attaches a UserInterface to
-    // every request. Must run after SessionMiddleware. It never denies access —
+    // every request. Must run after SessionMiddleware. It never denies access -
     // that is AuthorizationMiddleware's job.
     $app->pipe(IdentityMiddleware::class);
 
@@ -108,7 +108,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // view helper. Reads RouteResult, so it must follow RouteMiddleware.
     $app->pipe(NavigationMiddleware::class);
 
-    // ACL route access check — must run after routing and identity are resolved,
+    // ACL route access check - must run after routing and identity are resolved,
     // before dispatch.
     $app->pipe(AclMiddleware::class);
     $app->pipe(AuthorizationMiddleware::class);

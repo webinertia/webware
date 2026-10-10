@@ -1,6 +1,6 @@
 # webware/webware
 
-The Webware application skeleton — a Mezzio application that binds the Webware components
+The Webware application skeleton - a Mezzio application that binds the Webware components
 together. Per the standing composition doctrine, the skeleton is what binds `acl`,
 `usermanager` and `admin`; no component is required to require another. It is also the first
 place routing and the ACL decision path run **end to end**.
@@ -21,18 +21,18 @@ config:
 | Path | Role |
 |---|---|
 | `mago.toml` | Extends the centre (`vendor/webware/webware-tools/mago.toml`), pins `php-version` locally, and points the linter and analyzer at the local baselines. General rules stay in the centre; never add them here. |
-| `webware-ci.json` | The required CI workflow's parameter contract — read from the repository root by `webinertia/.github`. |
+| `webware-ci.json` | The required CI workflow's parameter contract - read from the repository root by `webinertia/.github`. |
 | `phpunit.xml.dist` | PHPUnit 13 strict mode: `requireCoverageMetadata`, `failOnNotice`, `failOnWarning`, `failOnDeprecation`. |
 | `compose.yml` / `Dockerfile` / `.devcontainer/` | The containerized toolchain (Composer, PHPUnit, Mago, Infection, PHPBench, roave BC-check). |
 | `src/App/src/ConfigProvider.php` | The application's wiring entry point, declared under `extra.laminas.config-provider`. |
 | `config/` | The Mezzio config: the aggregator (`config.php`), the container (`container.php`), the middleware pipeline (`pipeline.php`), and the layered `autoload/` files. |
-| `public/index.php` | The front controller — `public/` is the document root. |
+| `public/index.php` | The front controller - `public/` is the document root. |
 | `data/cache/` | The config cache target, held in git by `.gitkeep` only. Dropped by `dev:mode`, which clears it on `--enable`, `--disable` and `--clear-cache`. |
 
 `mago.toml`, `phpunit.xml.dist`, `.gitattributes`, `codecov.yml`, `Dockerfile`,
 `.dockerignore`, `infection.json5.dist`, `phpbench.json.dist` and devcontainer config are
 byte-identical to the canonical artifacts in
-`webware-tools/presets/webware-alignment/artifacts/` — copy updates from there rather than
+`webware-tools/presets/webware-alignment/artifacts/` - copy updates from there rather than
 editing them here.
 
 ## Quality gates
@@ -49,7 +49,7 @@ declares no thresholds at all. Lower them only with a deliberate decision, and n
 
 Four Mago gates run in CI and must be clean: `format --check`, `lint`, `analyze`, `guard`.
 Run `mago fmt` first when making changes, and fix findings at source rather than adding
-`@mago-expect` — a suppression needs to be a decision, not a reflex.
+`@mago-expect` - a suppression needs to be a decision, not a reflex.
 
 ## Development
 
@@ -82,7 +82,7 @@ vendor/bin/webware dev:mode --disable      # remove the active file, drop the co
 vendor/bin/webware dev:mode --clear-cache  # drop the config cache without changing the mode
 ```
 
-No routes are registered yet, so every request answers `404` from Mezzio's default handler —
+No routes are registered yet, so every request answers `404` from Mezzio's default handler -
 that is the expected state until the components are wired in and a route provider exists.
 
 Packages whose tests need MySQL uncomment the `mysql` service in `compose.yml`, mirroring the

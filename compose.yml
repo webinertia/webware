@@ -3,8 +3,8 @@
 #
 # Two things live here:
 #
-#   1. The backing services the application talks to — MySQL, phpMyAdmin and
-#      Mailpit — each published to the host, because the application's PHP runs
+#   1. The backing services the application talks to: MySQL, phpMyAdmin and
+#      Mailpit: each published to the host, because the application's PHP runs
 #      on the host and connects to them over 127.0.0.1.
 #   2. The `tooling` container, which runs the full Webware toolchain (Composer,
 #      PHPUnit, Mago, Infection, PHPBench, roave BC-check) for anyone who wants
@@ -13,7 +13,7 @@
 # This compose file is the single source of truth for the environment. Two
 # ways to use it:
 #
-#   1. VS Code Dev Container — "Reopen in Container" uses
+#   1. VS Code Dev Container: "Reopen in Container" uses
 #      .devcontainer/devcontainer.json, which is *backed by* this file (it
 #      references the `tooling` service rather than defining its own).
 #
@@ -28,7 +28,7 @@
 # Services are addressed from the host on 127.0.0.1: MySQL 3306, Mailpit SMTP
 # 1025 / UI 8025, phpMyAdmin 8082. That is why config/autoload/mysql.local.php
 # uses host 127.0.0.1 rather than the compose service name, and why phpMyAdmin
-# does not take 8080 — that port belongs to the application (`composer serve`).
+# does not take 8080: that port belongs to the application (`composer serve`).
 # The service values mirror the `db_image` / `db_env_json` / `db_port` package
 # parameters used by CI.
 # ---------------------------------------------------------------------------
@@ -59,13 +59,13 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       # Bind-mount the source so edits are visible on both the host and the
-      # container. vendor/ is NOT overridden — it is the host's own copy.
+      # container. vendor/ is NOT overridden - it is the host's own copy.
       # Composer/installs inside the container write straight into the
       # developer's working tree on disk.
       - .:/app
       # The Composer cache lives in a named volume (Linux-native I/O, fast on
       # Windows) so downloads survive container rebuilds. It is only a cache
-      # — the developer's real artifacts all live on the host.
+      # - the developer's real artifacts all live on the host.
       - composer-cache:/tmp/composer-cache
     # MySQL must be healthy before the shell attaches (see the `mysql` service
     # below).
@@ -75,14 +75,14 @@ services:
     working_dir: /app
 
   # -------------------------------------------------------------------------
-  # MySQL — mirrors the CI `db_image` / `db_env_json` / `db_port` parameters so
+  # MySQL - mirrors the CI `db_image` / `db_env_json` / `db_port` parameters so
   # the dev database matches CI. Reachable from `tooling` as host `mysql` on
   # port 3306, which is where config/autoload/mysql.local.php points.
   # -------------------------------------------------------------------------
   mysql:
     # Pinned to the 9.7 LTS line deliberately, and Renovate is blocked from
     # moving it (see `packageRules` in webinertia/.github renovate-config).
-    # `mysql:26.7` is NOT a newer LTS — it is the *innovation* track: the `lts`
+    # `mysql:26.7` is NOT a newer LTS - it is the *innovation* track: the `lts`
     # tag resolves to 9.7.2, while `innovation` and `latest` resolve to 26.7.0.
     image: mysql:9.7
     environment:
@@ -107,7 +107,7 @@ services:
       # survives `docker compose down` (use `down -v` to wipe it).
       - mysql-data:/var/lib/mysql
   # -------------------------------------------------------------------------
-  # phpMyAdmin — web UI for the `mysql` service above, published on 8082 so the
+  # phpMyAdmin - web UI for the `mysql` service above, published on 8082 so the
   # application keeps 8080 for itself (`composer serve`). Reachable at
   # http://localhost:8082 (log in as root with an empty password, or with the
   # MYSQL_USER / MYSQL_PASSWORD credentials).
@@ -126,7 +126,7 @@ services:
         condition: service_healthy
 
   # -------------------------------------------------------------------------
-  # Mailpit — catches outgoing mail for webware-mailer. Reachable from
+  # Mailpit - catches outgoing mail for webware-mailer. Reachable from
   # `tooling` as host `mailpit` on port 1025; the web UI is at
   # http://localhost:8025.
   # -------------------------------------------------------------------------
