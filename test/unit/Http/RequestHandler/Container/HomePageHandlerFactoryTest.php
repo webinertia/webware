@@ -40,7 +40,7 @@ final class HomePageHandlerFactoryTest extends TestCase
 
         self::assertInstanceOf(
             HomePageHandler::class,
-            (new HomePageHandlerFactory())($container),
+            new HomePageHandlerFactory()($container),
         );
     }
 }
