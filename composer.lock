@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc7043a50f85dee697fe65281c5b8807",
+    "content-hash": "2dc6c51437fa37d7433eb04254fbe4f4",
     "packages": [
         {
             "name": "brick/math",
@@ -5601,7 +5601,7 @@
             "dist": {
                 "type": "path",
                 "url": "../message-bus",
-                "reference": "5b76a8cda96bb02185fc24d3b625254bb5c354c2"
+                "reference": "7da1f6f4b46badf3705a42b64b57a263b1a1c8d5"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -5615,7 +5615,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
@@ -5690,7 +5690,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "cdec1069aa175ba5ffbd95d8097c0bdb87e4bc6a"
+                "reference": "10199a13f72da759df6337da4789024be1770e01"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5725,7 +5725,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
-                "webware/webware-tools": "^1.0.0-beta"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -5784,7 +5784,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "603340f45a6fe16570bdb99e8869db9b03dcee49"
+                "reference": "64a6f85d00fd23b8cc3184917ac420c137ef6115"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -5812,7 +5812,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/coding-standard": "^0.1.0",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "webware/webware-acl": "Provides the ACL implementation and ACL configuration consumed by the dashboard widget filtering, plus the ACL management UI."
@@ -5871,7 +5871,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-console",
-                "reference": "4ce2dd402ba55b489e419d760325b1e0fecef04e"
+                "reference": "5149dd02fef4d3934c93d54467956a32714c515e"
             },
             "require": {
                 "laminas/laminas-config-aggregator": "^1.20",
@@ -5883,7 +5883,7 @@
             "require-dev": {
                 "infection/infection": "^0.35",
                 "phpunit/phpunit": "^13.3",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "bin": [
                 "bin/webware"
@@ -5956,7 +5956,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-core",
-                "reference": "6f8388e5c6492b5ffb59b2b2c316005845746cdf"
+                "reference": "ecfc57612d3b2e22760587ff8e1d5bbc35a74a67"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5978,7 +5978,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -6036,7 +6036,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-event",
-                "reference": "c1803ba6c7cb394e01ae10ab0c5e27429631536c"
+                "reference": "3878b0ea44062d556cd0c2e7225a9ec28b5e600e"
             },
             "require": {
                 "phly/phly-event-dispatcher": "^1.5.0",
@@ -6052,7 +6052,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -6113,7 +6113,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-htmx",
-                "reference": "7c6dfc4c0797ef7ffe15d68bb79b6f3c39b1cb6e"
+                "reference": "557e774d54727242df158fd5c8e447c9b265febe"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -6135,7 +6135,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -6194,7 +6194,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-log",
-                "reference": "386d11006d60d4ce32dcbf481f8a603795b522c8"
+                "reference": "4cd3632482453181a5782ddab28d32cc9f37076e"
             },
             "require": {
                 "laminas/laminas-component-installer": "^3.2",
@@ -6218,7 +6218,8 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-core": "^1.0.0-alpha.9",
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "php-db/phpdb-mysql": "Required when using PhpDbHandler with a MySQL/MariaDB database",
@@ -6294,7 +6295,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-mailer",
-                "reference": "32c86b807789afd9a3ac0724d020acaa6bcf78af"
+                "reference": "a94749786dc901f9815ec49b29b7691ab82aff30"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -6313,7 +6314,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "symfony/mailer": "^8.1",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "phpmailer/phpmailer": "Required to use the PHPMailer-backed adapter (Webware\\Mailer\\Adapter\\PhpMailer)",
@@ -6386,7 +6387,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-message",
-                "reference": "b3305628bfe7f51e82a71005745b09df57ef205f"
+                "reference": "6f827778264a85360a991e1f6ee747193a595366"
             },
             "require": {
                 "mezzio/mezzio-session": "^1.17.0",
@@ -6407,7 +6408,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/messagebus-event": "^2.0.0-beta.1",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "laminas/laminas-view": "Required when the consuming application does not provide the HelperPluginManager service used by the SystemMessenger view helper"
@@ -6479,7 +6480,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-navigation",
-                "reference": "c4bbb6e35e9242f9ca0559ee557476401fd2106b"
+                "reference": "989f3817c4472305ad5991243238397a68996788"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
@@ -6492,13 +6493,13 @@
                 "webware/webware-core": "^1.0.0-alpha.6"
             },
             "require-dev": {
-                "infection/infection": "^0.34.1",
+                "infection/infection": "^0.35.0",
                 "laminas/laminas-permissions-acl": "^2.16",
                 "phpbench/phpbench": "^1.7",
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.2"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "extra": {
@@ -6563,7 +6564,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-phpdb",
-                "reference": "1b717f025970b422c4936aa01e021ee9a87c4f7f"
+                "reference": "7c0b697aa5c6c28f92b250c52675cc281f4d2aca"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -6584,7 +6585,7 @@
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
                 "webware/webware-event": "1.0.0-alpha.3",
-                "webware/webware-tools": "^1.0.0-beta.3"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "suggest": {
                 "mezzio/mezzio-session": "Required to use the database-backed session persistence",
@@ -6656,7 +6657,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-theme",
-                "reference": "5ecabf891b958364b25517fb88b621d0e8ef2494"
+                "reference": "ad8c5a012d00a39ad7e0e01946b4f7f6c17dcc6d"
             },
             "require": {
                 "laminas/laminas-view": "^3.0",
@@ -6670,7 +6671,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-beta.3"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "extra": {
@@ -6734,7 +6735,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-usermanager",
-                "reference": "0eba7ea465c025c4b26f53e7189c368a6d777697"
+                "reference": "98c6dcad02b963667f183b56d1081cf6d5eeafb1"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -6745,6 +6746,7 @@
                 "laminas/laminas-validator": "^3.7",
                 "laminas/laminas-view": "^2.30 || ^3.0",
                 "mezzio/mezzio": "^3.26",
+                "mezzio/mezzio-authentication": "^1.13",
                 "mezzio/mezzio-helpers": "^5.9",
                 "mezzio/mezzio-router": "^3.15 || ^4.0",
                 "mezzio/mezzio-session": "^1.12",
@@ -6767,7 +6769,7 @@
                 "webware/webware-core": "^1.0.0-alpha.9",
                 "webware/webware-event": "^1.0.0-alpha.2",
                 "webware/webware-htmx": "1.0.x-dev",
-                "webware/webware-log": "^2.0.0-alpha.1",
+                "webware/webware-log": "^2.0.0-alpha.4",
                 "webware/webware-mailer": "^1.0.0-beta.5",
                 "webware/webware-message": "^1.0.0-beta.2",
                 "webware/webware-phpdb": "^1.0.0-alpha.1"
@@ -6779,7 +6781,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
-                "webware/webware-tools": "^1.0.0-beta.8"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -14013,7 +14015,7 @@
             "dist": {
                 "type": "path",
                 "url": "../traccio",
-                "reference": "2af7b7dacd8f84e5330eda10f27cbe665ea4972c"
+                "reference": "abcd4a4c8e18d523d96319947a041caf40f03b7a"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -14088,7 +14090,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "46caed444973f45ae81c27909d55ffc5602e3175"
+                "reference": "e2722ba21d4f3192e1e66cd567b934a6d383d6f5"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
