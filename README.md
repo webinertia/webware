@@ -28,6 +28,7 @@ config:
 | `config/` | The Mezzio config: the aggregator (`config.php`), the container (`container.php`), the middleware pipeline (`pipeline.php`), and the layered `autoload/` files. |
 | `public/index.php` | The front controller - `public/` is the document root. |
 | `data/cache/` | The config cache target, held in git by `.gitkeep` only. Dropped by `dev:mode`, which clears it on `--enable`, `--disable` and `--clear-cache`. |
+| `docs/` | Prose that has to stay true: `configuration.md` is the configuration reference. |
 
 `mago.toml`, `phpunit.xml.dist`, `.gitattributes`, `codecov.yml`, `Dockerfile`,
 `.dockerignore`, `infection.json5.dist`, `phpbench.json.dist` and devcontainer config are
@@ -51,6 +52,27 @@ Four Mago gates run in CI and must be clean: `format --check`, `lint`, `analyze`
 Run `mago fmt` first when making changes, and fix findings at source rather than adding
 `@mago-expect` - a suppression needs to be a decision, not a reflex.
 
+## Configuration
+
+[`docs/configuration.md`](docs/configuration.md) is the configuration reference: every key the
+application must supply, where each value is read from, and how to override a value a component
+supplies.
+
+The short version, because these are what a fresh clone does not have:
+
+- **The database connection**, in `config/autoload/mysql.local.php`. That file is gitignored and no
+  `.dist` ships for it, so it has to be created by hand; the reference carries the full shape.
+  Sessions are database backed, so this is required for an anonymous visit, not only a signed-in one.
+- **The schema**, created by the component commands `user:init-db`, `session:init-db`,
+  `log:init-db` and `acl:init-db`, with `acl:seed` re-publishing the rules afterwards. They read the
+  same database configuration, so the connection has to work before they will run.
+- Everything else required (`debug`, `view_helper_config.base_path`, the three
+  `Webware\Core\UserInterface::class` keys, the mail adapter and `session.gc_maxlifetime`) ships
+  committed with working defaults for this repository and only needs revisiting for a different host.
+
+Editing any configuration file has no effect while the config cache is on. Clear it, or toggle
+development mode, then reload.
+
 ## Development
 
 The toolchain runs in a container, so the host needs no PHP install. With VS Code, reopen in
@@ -73,8 +95,9 @@ composer menu    # php vendor/bin/webware menu, the console host's interactive m
 ```
 
 `composer menu` opens the console host (`webware/webware-console`), which discovers the commands
-the installed components register: `dev:mode`, `acl:init-db`, `user:init-db`, and the Laminas
-`servicemanager:*` generators. Development mode is driven from there, or directly:
+the installed components register: `dev:mode`, the schema commands (`user:init-db`,
+`session:init-db`, `log:init-db`, `acl:init-db`, `acl:seed`), and the Laminas `servicemanager:*`
+generators. Development mode is driven from there, or directly:
 
 ```shell
 vendor/bin/webware dev:mode --enable       # copy the dist file, drop the config cache
@@ -82,8 +105,10 @@ vendor/bin/webware dev:mode --disable      # remove the active file, drop the co
 vendor/bin/webware dev:mode --clear-cache  # drop the config cache without changing the mode
 ```
 
-No routes are registered yet, so every request answers `404` from Mezzio's default handler -
-that is the expected state until the components are wired in and a route provider exists.
+Routes are registered by the component that owns them: the home page at `/` from `App\RouteProvider`,
+the user trees under `/user` from webware-usermanager, and the admin trees under `/admin` from
+webware-admin, webware-acl and webware-usermanager's admin segment. A request matching none of them
+falls through to Mezzio's `NotFoundHandler` and answers `404`.
 
 Packages whose tests need MySQL uncomment the `mysql` service in `compose.yml`, mirroring the
 `db_image` / `db_env_json` / `db_port` values they declare in `webware-ci.json`.
