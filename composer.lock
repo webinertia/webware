@@ -2367,12 +2367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-db/phpdb-mysql.git",
-                "reference": "463a8209370ebb73c5db19424175e6945b0ff57e"
+                "reference": "98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-db/phpdb-mysql/zipball/463a8209370ebb73c5db19424175e6945b0ff57e",
-                "reference": "463a8209370ebb73c5db19424175e6945b0ff57e",
+                "url": "https://api.github.com/repos/php-db/phpdb-mysql/zipball/98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1",
+                "reference": "98841be621d4ca0b4f9ced4a0de4afd9bf26c2e1",
                 "shasum": ""
             },
             "require": {
@@ -2421,7 +2421,7 @@
                 "issues": "https://github.com/php-db/phpdb-mysql/issues",
                 "source": "https://github.com/php-db/phpdb-mysql"
             },
-            "time": "2026-09-04T04:45:13+00:00"
+            "time": "2026-10-10T06:21:15+00:00"
         },
         {
             "name": "php-db/phpdb-validator",
@@ -5690,7 +5690,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-acl",
-                "reference": "10199a13f72da759df6337da4789024be1770e01"
+                "reference": "b52cbf89c1848ddef8357d3f22ca10e79f37bbc8"
             },
             "require": {
                 "fig/http-message-util": "^1.1",
@@ -5719,6 +5719,7 @@
                 "webware/webware-theme": "^1.0.0-alpha.1"
             },
             "require-dev": {
+                "giorgiosironi/eris": "^1.3",
                 "infection/infection": "^0.35.0",
                 "phpbench/phpbench": "^1.7",
                 "phpunit/phpunit": "^13.3",
@@ -5741,7 +5742,7 @@
             },
             "scripts": {
                 "test": [
-                    "phpunit --no-coverage --colors=always --testsuite \"unit test\""
+                    "phpunit --no-coverage --colors=always --testsuite \"unit test,property test\""
                 ],
                 "test-coverage": [
                     "phpunit --colors=always --coverage-clover clover.xml --coverage-text"
@@ -5784,7 +5785,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-admin",
-                "reference": "64a6f85d00fd23b8cc3184917ac420c137ef6115"
+                "reference": "718fcf22a71745c89f1010b5b3f624c921d66f87"
             },
             "require": {
                 "laminas/laminas-diactoros": "^3.8",
@@ -5871,7 +5872,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-console",
-                "reference": "5149dd02fef4d3934c93d54467956a32714c515e"
+                "reference": "3c900726b24f45cdba3927b2bac18f6a4cb8c5d2"
             },
             "require": {
                 "laminas/laminas-config-aggregator": "^1.20",
@@ -5914,7 +5915,7 @@
                     "infection"
                 ],
                 "test": [
-                    "phpunit --testsuite unit"
+                    "phpunit --no-coverage --colors=always --testsuite \"unit test\""
                 ],
                 "test-coverage": [
                     "phpunit --coverage-clover clover.xml"
@@ -5924,7 +5925,7 @@
                     "@test-integration"
                 ],
                 "test-integration": [
-                    "phpunit --testsuite integration"
+                    "phpunit --no-coverage --colors=always --testsuite \"integration test\""
                 ]
             },
             "license": [
@@ -6564,7 +6565,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-phpdb",
-                "reference": "7c0b697aa5c6c28f92b250c52675cc281f4d2aca"
+                "reference": "91979469f4f45fd30ff25d196dc6365cb3877d94"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -6639,7 +6640,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "PhpDb bridge for the Webware stack: shadows the PhpDb root namespace so packages can replace individual php-db/phpdb classes.",
+            "description": "PhpDb bridge for the Webware stack.",
             "keywords": [
                 "bridge",
                 "mezzio",
@@ -14015,7 +14016,7 @@
             "dist": {
                 "type": "path",
                 "url": "../traccio",
-                "reference": "abcd4a4c8e18d523d96319947a041caf40f03b7a"
+                "reference": "c8f9b8353d2c2faaf8f2a905a7472e6dbbae2cf0"
             },
             "require": {
                 "php": "~8.4.1 || ~8.5.0",
@@ -14032,7 +14033,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.5"
+                "webware/webware-tools": "^1.0.0-rc.6"
             },
             "type": "library",
             "autoload": {
@@ -14090,7 +14091,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "e2722ba21d4f3192e1e66cd567b934a6d383d6f5"
+                "reference": "2dc959f4b93d4e15df7072ebcf397ac4d8709fd0"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
