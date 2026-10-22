@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dc6c51437fa37d7433eb04254fbe4f4",
+    "content-hash": "6ee855acd4aa1ebfedd7e65a1f134d95",
     "packages": [
         {
             "name": "brick/math",
@@ -5615,7 +5615,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
@@ -5726,7 +5726,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -5813,7 +5813,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/coding-standard": "^0.1.0",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "webware/webware-acl": "Provides the ACL implementation and ACL configuration consumed by the dashboard widget filtering, plus the ACL management UI."
@@ -5884,7 +5884,7 @@
             "require-dev": {
                 "infection/infection": "^0.35",
                 "phpunit/phpunit": "^13.3",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "bin": [
                 "bin/webware"
@@ -5979,7 +5979,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -6053,7 +6053,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -6136,7 +6136,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -6220,7 +6220,7 @@
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
                 "webware/webware-core": "^1.0.0-alpha.9",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "php-db/phpdb-mysql": "Required when using PhpDbHandler with a MySQL/MariaDB database",
@@ -6315,7 +6315,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "symfony/mailer": "^8.1",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "phpmailer/phpmailer": "Required to use the PHPMailer-backed adapter (Webware\\Mailer\\Adapter\\PhpMailer)",
@@ -6409,7 +6409,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/messagebus-event": "^2.0.0-beta.1",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "laminas/laminas-view": "Required when the consuming application does not provide the HelperPluginManager service used by the SystemMessenger view helper"
@@ -6500,7 +6500,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "extra": {
@@ -6586,7 +6586,7 @@
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
                 "webware/webware-event": "1.0.0-alpha.3",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "suggest": {
                 "mezzio/mezzio-session": "Required to use the database-backed session persistence",
@@ -6672,7 +6672,7 @@
                 "phpunit/phpunit": "^13.3",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "extra": {
@@ -6782,7 +6782,7 @@
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
                 "webware/webware-console": "1.0.x-dev",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -14033,7 +14033,7 @@
                 "phpunit/phpunit": "^13.3.0",
                 "roave/backward-compatibility-check": "^8.21.0",
                 "roave/security-advisories": "dev-master",
-                "webware/webware-tools": "^1.0.0-rc.6"
+                "webware/webware-tools": "^1.0.0-rc.7"
             },
             "type": "library",
             "autoload": {
@@ -14091,7 +14091,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "2dc959f4b93d4e15df7072ebcf397ac4d8709fd0"
+                "reference": "32fc4d67f318e7a32cd101e0a118c03060115a6b"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
