@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc8dd6e7f097cb3b08d8f6bbbfdeae13",
+    "content-hash": "ced0392888bcaf68f9af1d3491c6ca9d",
     "packages": [
         {
             "name": "brick/math",
@@ -14091,7 +14091,7 @@
             "dist": {
                 "type": "path",
                 "url": "../webware-tools",
-                "reference": "1efb0381f951ab847f1aa5e40262768d0cdd1f31"
+                "reference": "8093557960cc9d1415bc0f8a674da752907bfcb3"
             },
             "require": {
                 "php": "~8.4.0 || ~8.5.0"
