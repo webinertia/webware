@@ -80,7 +80,7 @@ Notify the user LOUDLY when a release/tag is needed - they cut ALL tags. Never t
 - mago `.phtml` files get reformatted by editor format-on-save sometimes (blank-line diffs).
 
 ## THEME (webware-theme) FACTS: measured 2026-09-30
-- Code is MAP-based: ThemeResolver looks up theme.themes[<active>][<address>] then theme.themes['default'][<address>] else false. AggregateResolverFactory order:
+- Code is MAP-based: ThemeResolver looks up `theme.themes[<active>][<address>]` then `theme.themes['default'][<address>]` else false. AggregateResolverFactory order:
   ThemeResolver(100) -> TemplateMapResolver(50) -> NamespacedPathStackResolver(1). `theme.active` defaults 'default'. Tests: unit 7, integration 5 pass.
 - Spec docs (specs/001-theme-resolution/) still describe `theme.roots` + PSR-4 derivation (plan.md, data-model.md, quickstart.md, tasks T010/T014/T024) - STALE vs code.
   User will supply corrections (hand-typed) or ask me to list passages. Do not build on `roots`.
