@@ -40,7 +40,8 @@ final class RouteProviderTest extends TestCase
         $prepared = [];
 
         $factory = $this->createStub(MiddlewareFactoryInterface::class);
-        $factory->method('prepare')
+        $factory
+            ->method('prepare')
             ->willReturnCallback(
                 static function (mixed $pipeline) use (&$prepared, $middleware): MiddlewareInterface {
                     if (is_array($pipeline)) {
@@ -59,7 +60,8 @@ final class RouteProviderTest extends TestCase
         $captured = null;
 
         $collector = $this->createMock(RouteCollectorInterface::class);
-        $collector->expects($this->once())
+        $collector
+            ->expects($this->once())
             ->method('get')
             ->willReturnCallback(
                 static function (string $path, MiddlewareInterface $mw, ?string $name = null) use (

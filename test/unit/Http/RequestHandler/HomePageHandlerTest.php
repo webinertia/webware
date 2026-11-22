@@ -32,7 +32,8 @@ final class HomePageHandlerTest extends TestCase
     public function rendersTheHomePageTemplateAddress(): void
     {
         $template = $this->createMock(TemplateRendererInterface::class);
-        $template->expects($this->once())
+        $template
+            ->expects($this->once())
             ->method('render')
             ->with('app::home-page')
             ->willReturn('<html>home</html>');

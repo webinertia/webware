@@ -33,7 +33,8 @@ final class HomePageHandlerFactoryTest extends TestCase
         $template = $this->createStub(TemplateRendererInterface::class);
 
         $container = $this->createStub(ContainerInterface::class);
-        $container->method('get')
+        $container
+            ->method('get')
             ->willReturnMap([
                 [TemplateRendererInterface::class, $template],
             ]);
